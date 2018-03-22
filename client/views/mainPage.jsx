@@ -16,7 +16,7 @@ class MainPage extends React.Component {
 
    render() {
       return (
-        <div style={{backgroundColor:'#2e2f30',height: '100vh',overflow:'hidden'}}>
+        <div style={{backgroundColor:'#2e2f30',overflow:'hidden',marginTop:'12%'}}>
           <HeaderComponent content='Dynamic Pricing' linkto='/'/>
           <Grid>
           <Grid.Row style={{marginTop:'5%'}}>

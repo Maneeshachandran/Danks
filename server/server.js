@@ -15,7 +15,7 @@ app.use(express.static('./../'));
 app.use('/',(req,res,next)=>{
   console.log('inside routes');
   next();
-},finalResult);
+});
 
 module.exports = server.listen(3000, err => {
   if(err){

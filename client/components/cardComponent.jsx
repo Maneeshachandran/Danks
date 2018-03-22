@@ -6,7 +6,8 @@ class CardComponent extends React.Component {
   constructor(){
     super();
     this.state={
-      open:false
+      open:false,
+      checked:false
     }
   }
   openModal(){
@@ -14,6 +15,9 @@ class CardComponent extends React.Component {
   }
   closeModal(){
     this.setState({open:false});
+  }
+  handleChange(){
+    this.setState({checked:true});
   }
   render() {
      return (
@@ -68,7 +72,7 @@ class CardComponent extends React.Component {
             <Grid.Row style={{marginTop:'-17px'}}>
               <Grid.Column width={12}/>
               <Grid.Column width={3}>
-                  <Checkbox style={{textAlign:'center'}}/>
+                  <Checkbox style={{textAlign:'center'}} onChange={this.handleChange.bind(this)} checked={this.state.checked} />
               </Grid.Column>
             </Grid.Row>
           </Grid>
@@ -79,9 +83,9 @@ class CardComponent extends React.Component {
          <Modal.Description>
            <Grid>
              <Grid.Row>
-               <center><Image size='small' style={{marginTop:'3%',marginBottom:'5%',position:'absolute',marginLeft:'32%'}} src={this.props.image}/></center>
+               <center><Image size='small' style={{marginTop:'3%',marginBottom:'5%',position:'absolute',marginLeft:'30%'}} src={this.props.image}/></center>
              </Grid.Row>
-             <Grid.Row style={{marginTop:'32%'}}>
+             <Grid.Row style={{marginTop:'35%'}}>
                <Grid.Column width={2} />
                <Grid.Column width={8}>
                  Product Name
@@ -151,7 +155,7 @@ class CardComponent extends React.Component {
              <Grid.Row />
            </Grid>
          </Modal.Description>
-     </Modal>
+       </Modal>
         </Grid.Column>
       </Grid.Row>
 
