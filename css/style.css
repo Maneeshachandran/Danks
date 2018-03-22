@@ -4,3 +4,9 @@
  .ui.fluid.dropdown.drop1{
 //  background-color: #A1A3A1 !important;
  }
+.drop1.ui.dropdown:not(.button)>.default.text {
+     color: white;
+ }
+ .drop1.ui.fluid.dropdown{
+   color: white;
+ }

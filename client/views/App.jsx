@@ -4,30 +4,25 @@ import {HashRouter, Route, Link} from 'react-router-dom';
 class App extends React.Component {
    render() {
       return (
-        <div style={{backgroundColor:'#2e2f30',height: '100vh',overflow:'hidden',overflowX:'hidden'}}>
-           <Grid >
-             <Grid.Row style={{marginTop:'25%'}}>
-               <Grid.Column style={{textAlign:'center'}}>
-                <span style={{fontSize:'25px',color:'white',letterSpacing:'2px',fontFamily:'Comfortaa'}}>Dansk Supermarked</span>
-               </Grid.Column>
-             </Grid.Row>
-             <Grid.Row textAlign='center' style={{marginTop:'-22px'}}>
+        <div style={{height: '100vh',overflow:'hidden',overflowX:'hidden'}}>
+           <Grid>
+             <Grid.Row style={{marginTop:'15%',background:'rgba(255,255,255,0.2)',paddingLeft:'5%'}}>
                <Grid.Column>
-                 <span style={{fontSize:'25px',color:'white',letterSpacing:'1px',fontFamily:'Comfortaa'}}>Group</span>
+                 <Image src='../../images/logo.png' />
                </Grid.Column>
              </Grid.Row>
-             <Grid.Row style={{marginTop:'10%'}}>
+             <Grid.Row style={{marginTop:'30%'}}>
                <Grid.Column width={1}/>
                <Grid.Column width={6}>
                  <Grid as={Link} to='/mainPage'>
                    <Grid.Row>
                      <Grid.Column>
-                  <Image src='../../images/discount.png' />
+                  <Image src='../../images/d.png' />
                   </Grid.Column>
                   </Grid.Row>
                   <Grid.Row style={{marginTop:'-10px'}}>
                     <Grid.Column style={{textAlign:'center'}}>
-                       <span style={{color:'white',letterSpacing:'1px',fontFamily:'Comfortaa',fontSize:'14px'}}>Dynamic Pricing</span>
+                       <span style={{color:'white',fontSize:'19px'}}>Dynamic Pricing</span>
                     </Grid.Column>
                   </Grid.Row>
                   </Grid>
@@ -37,12 +32,12 @@ class App extends React.Component {
                    <Grid>
                      <Grid.Row>
                        <Grid.Column>
-                    <Image src='../../images/line-chart.png' />
+                    <Image src='../../images/clip.png' />
                     </Grid.Column>
                     </Grid.Row>
                     <Grid.Row style={{marginTop:'-10px'}}>
                       <Grid.Column style={{textAlign:'center'}}>
-                         <span style={{color:'white',letterSpacing:'1px',fontFamily:'Comfortaa',fontSize:'14px'}}>CPF Report</span>
+                         <span style={{color:'white',fontSize:'19px'}}>CFO Report</span>
                       </Grid.Column>
                     </Grid.Row>
                     </Grid>

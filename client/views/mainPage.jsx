@@ -8,56 +8,41 @@ const countryOptions = [ { key: 'Sollentuna', value: 'Sollentuna', text: 'Sollen
                        ]
 const productsOptions = [ { key: 'Vegetables', value: 'Vegetables', text: 'Vegetables' },
                          { key: 'Fruits', value: 'Fruits', text: 'Fruits' },
-                         { key: 'Oil', value: 'Oil', text: 'Oil' },
-                         { key: 'Packaged Items', value: 'Packaged Items', text: 'Packaged Items' }
+                         { key: 'Oil', value: 'Oil', text: 'Oil' }
                        ]
 
 class MainPage extends React.Component {
 
    render() {
       return (
-        <div style={{backgroundColor:'#2e2f30',overflow:'hidden',marginTop:'12%'}}>
+        <div style={{overflow:'hidden',marginTop:'12%'}}>
           <HeaderComponent content='Dynamic Pricing' linkto='/'/>
           <Grid>
           <Grid.Row style={{marginTop:'5%'}}>
             <Grid.Column>
               <center>
-              <Image src='../../images/placeholder.png' />
+              <Image src='../../images/locator.png' />
               </center>
             </Grid.Column>
           </Grid.Row>
-          {/* <Grid.Row style={{marginTop:'-23px'}}>
-            <Grid.Column>
-              <center>
-              <span style={{letterSpacing:'1px',color:'white',fontFamily:'Comfortaa'}}>Select Location</span>
-            </center>
-            </Grid.Column>
-          </Grid.Row> */}
           <Grid.Row>
             <Grid.Column width={3}/>
             <Grid.Column width={10}>
-              <Dropdown className='drop1' placeholder="Select a Location" fluid selection options={countryOptions} />
+              <Dropdown className='drop1' placeholder="Select a Location" fluid selection options={countryOptions} style={{background:'rgba(214,207,27,1)'}}/>
             </Grid.Column>
             <Grid.Column width={3}/>
           </Grid.Row>
           <Grid.Row style={{marginTop:'10%'}}>
             <Grid.Column>
               <center>
-              <Image src='../../images/shoppingbag.png' />
+              <Image src='../../images/cart.png' />
               </center>
             </Grid.Column>
           </Grid.Row>
-          {/* <Grid.Row style={{marginTop:'0px'}}>
-            <Grid.Column>
-              <center>
-              <span style={{letterSpacing:'1px',color:'white',fontFamily:'Comfortaa'}}>Select Products</span>
-            </center>
-            </Grid.Column>
-          </Grid.Row> */}
           <Grid.Row>
             <Grid.Column width={3}/>
             <Grid.Column width={10}>
-              <Dropdown className='drop1' placeholder="Select a Product" fluid selection options={productsOptions} />
+              <Dropdown className='drop1' placeholder="Select a Product" fluid selection options={productsOptions} style={{background:'rgba(214,207,27,1)',marginBottom:'5%'}}/>
             </Grid.Column>
             <Grid.Column width={3}/>
           </Grid.Row>
