@@ -2,6 +2,8 @@ import React from 'react';
 import { Grid,Header,Card,Image,Segment,Icon,Dropdown,Button,Checkbox, Modal } from 'semantic-ui-react';
 import {HashRouter, Route, Link} from 'react-router-dom';
 import HeaderComponent from '../components/headerComponent.jsx';
+import request from 'superagent';
+
 
 class ProductsPage extends React.Component {
   constructor(){
@@ -14,12 +16,12 @@ class ProductsPage extends React.Component {
       open1:false,
       products:[{
             'image':'http://www.pngall.com/wp-content/uploads/2016/05/Avocado-PNG-Clipart.png',
-            'name' :'Avacado',
+            'name' :'Avocado',
             'cp':'€10',
             'np':'€8',
             'percent':'25%',
             'outDoor_price':'€5',
-            'føtex_erhverv_price':'75%',
+            'føtex_erhverv_price':'€7',
             'checked':false,
             'approved':false
           },{
@@ -29,7 +31,7 @@ class ProductsPage extends React.Component {
         'np':'€8',
         'percent':'30%',
         'outDoor_price':'€4' ,
-        'føtex_erhverv_price':'45%',
+        'føtex_erhverv_price':'€4',
         'checked':false,
         'approved':false
       },{
@@ -39,7 +41,7 @@ class ProductsPage extends React.Component {
         'np':'€8',
         'percent':'10%',
         'outDoor_price':'€3',
-        'føtex_erhverv_price':'55%',
+        'føtex_erhverv_price':'€5',
         'checked':false,
         'approved':false
       },{
@@ -49,7 +51,7 @@ class ProductsPage extends React.Component {
         'np':'€8',
         'percent':'5%',
         'outDoor_price':'€5',
-        'føtex_erhverv_price':'65%',
+        'føtex_erhverv_price':'€6',
         'checked':false,
         'approved':false
       },{
@@ -59,7 +61,7 @@ class ProductsPage extends React.Component {
             'np':'€8',
             'percent':'25%',
             'outDoor_price':'€5',
-            'føtex_erhverv_price':'75%',
+            'føtex_erhverv_price':'€7',
             'checked':false,
             'approved':false
           },{
@@ -69,7 +71,7 @@ class ProductsPage extends React.Component {
             'np':'€8',
             'percent':'5%',
             'outDoor_price':'€5',
-            'føtex_erhverv_price':'65%',
+            'føtex_erhverv_price':'€6',
             'checked':false,
             'approved':false
           }]
@@ -79,13 +81,14 @@ class ProductsPage extends React.Component {
   }
   componentDidMount()
  {
-   fetch('https://dansk-rapid.herokuapp.com/scrape', {
+   fetch('https://dansk-rapid.herokuapp.com/scrape', {mode:'no-cors',
  method: 'GET',
  headers: {
    Accept: 'application/json',
    'Content-Type': 'application/json',
  },}).then((response) => response.json())
    .then((responseJson) => {
+     console.log(responseJson);
      var array=[];
      array = responseJson.map((item,key)=>{
        item.checked = false;
@@ -98,6 +101,16 @@ class ProductsPage extends React.Component {
    .catch((error) => {
      console.error(error);
    });
+
+ // request
+ //  .get('http://localhost:3000/scrape')
+ //  .then(function(res) {
+ //     console.log(res.body,res.text);
+ //  });
+
+
+
+
  }
 
   openModal(i){
@@ -232,125 +245,133 @@ class ProductsPage extends React.Component {
                     </Grid.Row>
                   </Grid>
                 </Grid.Column>
-                <Grid.Column width={1}>
-                  <Modal open={this.state.open} >
-               <Modal.Header style={{color:'#a3104d'}}><center>Product Information</center></Modal.Header>
-               {this.state.modalco.size !=0 ?
-                 <span>
-                 <Modal.Content scrolling >
-                 <Modal.Description>
-                   <Grid>
-                     <Grid.Row>
-                       <center><Image size='small' style={{position:'absolute',marginLeft:'30%'}}
-                          src={this.state.modalco.image}/></center>
-                     </Grid.Row>
-                     <Grid.Row style={{marginTop:'35%'}}>
-                       <Grid.Column width={16}>
-                         <center>
-                           Product Name
-                       </center>
-                     </Grid.Column>
-                     </Grid.Row>
-                     <Grid.Row style={{fontSize:'18px',color:'#a3104d',marginTop:'-5%'}}>
-                       <Grid.Column width={16}>
-                         <center>
-                           {this.state.modalco.name}
-                       </center>
-                     </Grid.Column>
-                     </Grid.Row>
-                     <Grid.Row>
-                       <Grid.Column width={16}>
-                         <center>
-                           New Price
-                       </center>
-                     </Grid.Column>
-                     </Grid.Row>
-                     <Grid.Row style={{fontSize:'18px',color:'#a3104d',marginTop:'-5%'}}>
-                       <Grid.Column width={16} >
-                         <center>
-                           {this.state.modalco.np}
-                       </center>
-                     </Grid.Column>
-                     </Grid.Row>
-                     <Grid.Row>
-                       <Grid.Column width={16}>
-                         <center>
-                           Current Price
-                       </center>
-                     </Grid.Column>
-                     </Grid.Row>
-                     <Grid.Row style={{fontSize:'18px',color:'#a3104d',marginTop:'-5%'}}>
-                       <Grid.Column width={16}>
-                         <center>
-                           {this.state.modalco.cp}
-                       </center>
-                     </Grid.Column>
-                     </Grid.Row>
-                     <Grid.Row>
-                       <Grid.Column width={16}>
-                         <center>
-                           % Gain in Margin
-                       </center>
-                     </Grid.Column>
-                     </Grid.Row>
-                     <Grid.Row style={{fontSize:'18px',color:'#a3104d',marginTop:'-5%'}}>
-                       <Grid.Column width={16} >
-                         <center>
-                           {this.state.modalco.percent}
-                       </center>
-                     </Grid.Column>
-                     </Grid.Row>
-                     <Grid.Row>
-                       <Grid.Column width={16}>
-                         <center>
-                           Out of the Door price
-                       </center>
-                     </Grid.Column>
-                     </Grid.Row>
-                     <Grid.Row style={{fontSize:'18px',color:'#a3104d',marginTop:'-5%'}}>
-                       <Grid.Column width={16} >
-                         <center>
-                           {this.state.modalco.outDoor_price}
-                       </center>
-                     </Grid.Column>
-                     </Grid.Row>
-                     <Grid.Row>
-                       <Grid.Column width={16} >
-                         <center>
-                         <Segment style={{width:'50%',border:'1px solid #a3104d'}}>
-                         <center>
-                           føtex Erhverv's Price
-                           <br />
-                           <br />
-                           <p style={{fontSize:'18px',color:'#a3104d',marginTop:'-3%'}}>{this.state.modalco.føtex_erhverv_price}</p>
-                       </center>
-                     </Segment>
-                     </center>
-                     </Grid.Column>
-                     </Grid.Row>
-                   </Grid>
-                 </Modal.Description>
-               </Modal.Content>
-               <Modal.Actions >
-                 <Grid style={{overflow:'hidden'}}>
-                   <Grid.Row>
-                     <Grid.Column >
-                       <Button.Group attached='bottom'>
-                         <Button color='black' style={{background:'#a3104d',color:'white'}} onClick={this.closeModal.bind(this)}>Cancel</Button>
-                         <Button style={{border:'1px solid black',color:'#a3104d'}} onClick={this.approve1.bind(this)} >Approve</Button>
-                       </Button.Group>
-                     </Grid.Column>
-               </Grid.Row>
-             </Grid>
-               </Modal.Actions>
-             </span> :
-                 null }
-               </Modal>
-                </Grid.Column>
+                <Grid.Column />
               </Grid.Row>
+
              )
            // }
            })}
+         </Grid>
+         <Grid>
+           <Grid.Row>
+             <Grid.Column >
+               <Modal open={this.state.open} >
+                 <Modal.Header style={{color:'#a3104d'}}><center>Product Information</center></Modal.Header>
+                  {this.state.modalco.size !=0 ?
+                    <span>
+                    <Modal.Content scrolling >
+                    <Modal.Description>
+                      <Grid>
+                        <Grid.Row>
+                          <Grid.Column >
+                          <center><Image size='small' style={{position:'absolute',marginLeft:'30%'}}
+                             src={this.state.modalco.image}/></center>
+                           </Grid.Column>
+                         </Grid.Row>
+                        <Grid.Row style={{marginTop:'35%'}}>
+                          <Grid.Column width={16}>
+                            <center>
+                              Product Name
+                          </center>
+                        </Grid.Column>
+                        </Grid.Row>
+                        <Grid.Row style={{fontSize:'18px',color:'#a3104d',marginTop:'-5%'}}>
+                          <Grid.Column width={16}>
+                            <center>
+                              {this.state.modalco.name}
+                          </center>
+                        </Grid.Column>
+                        </Grid.Row>
+                        <Grid.Row>
+                          <Grid.Column width={16}>
+                            <center>
+                              New Price
+                          </center>
+                        </Grid.Column>
+                        </Grid.Row>
+                        <Grid.Row style={{fontSize:'18px',color:'#a3104d',marginTop:'-5%'}}>
+                          <Grid.Column width={16} >
+                            <center>
+                              {this.state.modalco.np}
+                          </center>
+                        </Grid.Column>
+                        </Grid.Row>
+                        <Grid.Row>
+                          <Grid.Column width={16}>
+                            <center>
+                              Current Price
+                          </center>
+                        </Grid.Column>
+                        </Grid.Row>
+                        <Grid.Row style={{fontSize:'18px',color:'#a3104d',marginTop:'-5%'}}>
+                          <Grid.Column width={16}>
+                            <center>
+                              {this.state.modalco.cp}
+                          </center>
+                        </Grid.Column>
+                        </Grid.Row>
+                        <Grid.Row>
+                          <Grid.Column width={16}>
+                            <center>
+                              % Gain in Margin
+                          </center>
+                        </Grid.Column>
+                        </Grid.Row>
+                        <Grid.Row style={{fontSize:'18px',color:'#a3104d',marginTop:'-5%'}}>
+                          <Grid.Column width={16} >
+                            <center>
+                              {this.state.modalco.percent}
+                          </center>
+                        </Grid.Column>
+                        </Grid.Row>
+                        <Grid.Row>
+                          <Grid.Column width={16}>
+                            <center>
+                              Out of the Door price
+                          </center>
+                        </Grid.Column>
+                        </Grid.Row>
+                        <Grid.Row style={{fontSize:'18px',color:'#a3104d',marginTop:'-5%'}}>
+                          <Grid.Column width={16} >
+                            <center>
+                              {this.state.modalco.outDoor_price}
+                          </center>
+                        </Grid.Column>
+                        </Grid.Row>
+                        <Grid.Row>
+                          <Grid.Column width={16} >
+                            <center>
+                            <Segment style={{width:'50%',border:'1px solid #a3104d'}}>
+                            <center>
+                              føtex Erhverv's Price
+                              <br />
+                              <br />
+                              <p style={{fontSize:'18px',color:'#a3104d',marginTop:'-3%'}}>{this.state.modalco.føtex_erhverv_price}</p>
+                          </center>
+                          </Segment>
+                          </center>
+                        </Grid.Column>
+                        </Grid.Row>
+                      </Grid>
+              </Modal.Description>
+            </Modal.Content>
+            <Modal.Actions >
+              <Grid style={{overflow:'hidden'}}>
+                <Grid.Row>
+                  <Grid.Column >
+                    <Button.Group attached='bottom'>
+                      <Button color='black' style={{background:'#a3104d',color:'white'}} onClick={this.closeModal.bind(this)}>Cancel</Button>
+                      <Button style={{border:'1px solid black',color:'#a3104d'}} onClick={this.approve1.bind(this)} >Approve</Button>
+                    </Button.Group>
+                  </Grid.Column>
+            </Grid.Row>
+          </Grid>
+            </Modal.Actions>
+          </span> :
+              null }
+            </Modal>
+             </Grid.Column>
+           </Grid.Row>
          </Grid>
          <Grid>
            <Grid.Row >
