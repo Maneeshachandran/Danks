@@ -55,7 +55,7 @@ class ProductsPage extends React.Component {
         'checked':false,
         'approved':false
       },{
-            'image':'http://www.pngall.com/wp-content/uploads/2016/05/Avocado-PNG-Clipart.png',
+            'image':'http://www.pngall.com/wp-content/uploads/2016/04/Banana-Free-Download-PNG.png',
             'name' :'Banana',
             'cp':'€10',
             'np':'€8',
@@ -64,26 +64,30 @@ class ProductsPage extends React.Component {
             'føtex_erhverv_price':'€7',
             'checked':false,
             'approved':false
-          },{
-            'image':'http://www.freepngimg.com/download/apple/16-red-apple-png-image.png',
-            'name' :'Orange',
-            'cp':'€5',
-            'np':'€8',
-            'percent':'5%',
-            'outDoor_price':'€5',
-            'føtex_erhverv_price':'€6',
-            'checked':false,
-            'approved':false
-          }]
+          // },{
+          //   'image':'https://imageresizer.static9.net.au/fIxyLYPgoCU50ODKB7ZZRV_JvUI=/1024x0/smart/http%3A%2F%2Fprod.static9.net.au%2F_%2Fmedia%2FImages%2FNL-Homes%2F2007%2F08%2F27%2F05%2F00%2FRLoranges.jpg'​​​​​​​​​​​​​,
+          //   'name' :'Orange',
+          //   'cp':'€5',
+          //   'np':'€8',
+          //   'percent':'5%',
+          //   'outDoor_price':'€5',
+          //   'føtex_erhverv_price':'€6',
+          //   'checked':false,
+          //   'approved':false
+          // }]
+        }]
     }
     this.viewProducts = this.viewProducts.bind(this);
     this.approve = this.approve.bind(this);
   }
   componentDidMount()
  {
-   fetch('https://dansk-rapid.herokuapp.com/scrape', {mode:'no-cors',
+   fetch('http://ec2-52-66-57-41.ap-south-1.compute.amazonaws.com:8001/scrape', {
  method: 'GET',
+ mode:'cors',
  headers: {
+   'Access-Control-Allow-Origin':'',
+'Content-Type': 'multipart/form-data',
    Accept: 'application/json',
    'Content-Type': 'application/json',
  },}).then((response) => response.json())
@@ -103,7 +107,8 @@ class ProductsPage extends React.Component {
    });
 
  // request
- //  .get('http://localhost:3000/scrape')
+ //  .get('http://ec2-52-66-57-41.ap-south-1.compute.amazonaws.com:8001/scrape')
+ //  .set('Access-Control-Allow-Origin', '*')
  //  .then(function(res) {
  //     console.log(res.body,res.text);
  //  });
@@ -245,7 +250,7 @@ class ProductsPage extends React.Component {
                     </Grid.Row>
                   </Grid>
                 </Grid.Column>
-                <Grid.Column />
+                <Grid.Column width={1} />
               </Grid.Row>
 
              )
