@@ -137,14 +137,21 @@ class ProductsPage extends React.Component {
   approve1(){
     var infoProduct = this.state.modalco;
     var productList = this.state.products;
+    var selectedList = this.state.selectedProducts;
     productList.map((item)=>{
       if(infoProduct.name == item.name){
         const index = productList.indexOf(item);
           productList.splice(index, 1);
       }
     })
+    selectedList.map((item)=>{
+      if(infoProduct.name == item.name){
+        const index = selectedList.indexOf(item);
+          selectedList.splice(index, 1);
+      }
+    })
 
-    this.setState({products:productList,modalMsg:'Products have Approved Successfully',approved:true});
+    this.setState({products:productList,selectedProducts:selectedList,modalMsg:'Products have Approved Successfully',approved:true});
   }
   approve(){
     var { products } = this.state;
