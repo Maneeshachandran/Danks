@@ -204,33 +204,33 @@ class ProductsPage extends React.Component {
                 <Grid.Column width={6} style={{background:'rgba(255,255,255,0.9)'}} >
                   <Grid>
                     <Grid.Row style={{marginTop:'13%',color:'#a3104d',fontSize:'18px',fontWeight:'bold'}}>
-                      <Grid.Column>
+                      <Grid.Column width ={16}>
                         <span>{item.name}</span>
                        </Grid.Column>
                     </Grid.Row>
                     <Grid.Row style={{marginTop:'-13%'}}>
-                      <Grid.Column width={4}>
+                      <Grid.Column width={5}>
                         <p>CP</p>
                       </Grid.Column>
-                      <Grid.Column width={4} style={{marginTop:'5px'}} >
+                      <Grid.Column width={5} style={{marginTop:'5px'}} >
                         <Image src='../../images/caret-arrow-up.png'/>
                       </Grid.Column>
-                      <Grid.Column width={4}>
+                      <Grid.Column width={6}>
                         <p>NP</p>
                       </Grid.Column>
-                      <Grid.Column width={4} />
+                      {/* <Grid.Column width={4} /> */}
                     </Grid.Row>
                     <Grid.Row style={{marginTop:'-17px',marginBottom:'7%'}}>
-                      <Grid.Column width={4}>
+                      <Grid.Column width={5}>
                         <p>{item.cp}</p>
                       </Grid.Column>
-                      <Grid.Column width={4}>
+                      <Grid.Column width={5}>
                         <p>{item.percent}</p>
                       </Grid.Column>
-                      <Grid.Column width={4}>
+                      <Grid.Column width={6}>
                         <p>{item.np}</p>
                       </Grid.Column>
-                      <Grid.Column width={4} />
+                      {/* <Grid.Column width={4} /> */}
                     </Grid.Row>
                   </Grid>
                 </Grid.Column>
@@ -256,6 +256,18 @@ class ProductsPage extends React.Component {
              )
            // }
            })}
+
+         </Grid>
+         <Grid>
+           <Grid.Row >
+             <Grid.Column width={16}>
+
+                <Button.Group attached='bottom' style={{position:'fixed',zIndex:100,bottom:'0'}}>
+               <Button  style={{background:'#a3104d',color:'white',width:'92%'}} onClick={this.viewProducts}>View Products</Button>
+               <Button  color='white' style={{border:'1px solid black',color:'#a3104d',width:'92%'}} onClick={this.approve}>Approve</Button>
+             </Button.Group>
+             </Grid.Column>
+           </Grid.Row>
          </Grid>
          <Grid>
            <Grid.Row>
@@ -375,16 +387,6 @@ class ProductsPage extends React.Component {
           </span> :
               null }
             </Modal>
-             </Grid.Column>
-           </Grid.Row>
-         </Grid>
-         <Grid>
-           <Grid.Row >
-             <Grid.Column width={16}>
-               <Button.Group attached='bottom' style={{position:'fixed',zIndex:'100',bottom:'0'}}>
-                 <Button fluid style={{background:'#a3104d',color:'white'}} onClick={this.viewProducts}>View Products</Button>
-                 <Button fluid color='white' style={{border:'1px solid black',color:'#a3104d'}} onClick={this.approve}>Approve</Button>
-               </Button.Group>
              </Grid.Column>
            </Grid.Row>
          </Grid>
