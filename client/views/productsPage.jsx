@@ -14,6 +14,7 @@ class ProductsPage extends React.Component {
       modalMsg:'',
       open:false,
       open1:false,
+      productsArray:[],
       products:[{
             'image':'http://www.pngall.com/wp-content/uploads/2016/05/Avocado-PNG-Clipart.png',
             'name' :'Avocado',
@@ -82,44 +83,24 @@ class ProductsPage extends React.Component {
   }
   componentDidMount()
  {
-   fetch('http://ec2-52-66-57-41.ap-south-1.compute.amazonaws.com:8001/scrape', {
- method: 'GET',
- mode:'cors',
- headers: {
-   'Access-Control-Allow-Origin':'',
-'Content-Type': 'multipart/form-data',
-   Accept: 'application/json',
-   'Content-Type': 'application/json',
- },}).then((response) => response.json())
-   .then((responseJson) => {
-     console.log(responseJson);
-     var array=[];
-     array = responseJson.map((item,key)=>{
-       item.checked = false;
-       item.approved = false;
-       return item
-     })
-     console.log(array);
-     this.setState({productsList:array})
-   })
-   .catch((error) => {
-     console.error(error);
-   });
-
- // request
- //  .get('http://ec2-52-66-57-41.ap-south-1.compute.amazonaws.com:8001/scrape')
- //  .set('Access-Control-Allow-Origin', '*')
- //  .then(function(res) {
- //     console.log(res.body,res.text);
- //  });
-
-
-
-
- }
-
+   var context = this;
+  request.get('http://localhost:3000/scrape')
+   .end(function(err, res){
+     if (err || !res.ok) {
+           alert('Oh no! error');
+         } else {
+           var tempArray = [];
+           tempArray = res.body.map((item,key)=>{
+             item.checked = false;
+              item.approved = false;
+              return item
+           })
+           context.setState({productsArray:tempArray});
+      }
+ })
+}
   openModal(i){
-    this.setState({modalco:this.state.products[i],open:true});
+    this.setState({modalco:this.state.productsArray[i],open:true});
   }
   openModal1(i){
     this.setState({modalco:this.state.selectedProducts[i],open:true});
@@ -129,7 +110,7 @@ class ProductsPage extends React.Component {
   }
   handleChange(index,e,value){
     var context= this;
-    var temp= this.state.products;
+    var temp= this.state.productsArray;
     var selectedProducts=this.state.selectedProducts;
     temp.map((item,i)=>{
       if(i==index){
@@ -140,21 +121,21 @@ class ProductsPage extends React.Component {
         else{
           item.checked=false;
           temp.map((item1,i1)=>{
-            if(item1.name==this.state.products[index].name){
+            if(item1.name==this.state.productsArray[index].name){
               selectedProducts.splice(index,1);
             }
           })
         }
       }
     })
-    this.setState({products:temp,selectedProducts:selectedProducts});
+    this.setState({productsArray:temp,selectedProducts:selectedProducts});
   }
   viewProducts(){
     this.setState({open1:true});
   }
   approve1(){
     var infoProduct = this.state.modalco;
-    var productList = this.state.products;
+    var productList = this.state.productsArray;
     var selectedList = this.state.selectedProducts;
     productList.map((item)=>{
       if(infoProduct.name == item.name){
@@ -169,12 +150,12 @@ class ProductsPage extends React.Component {
       }
     })
 
-    this.setState({products:productList,selectedProducts:selectedList,modalMsg:'Products have Approved Successfully',approved:true});
+    this.setState({productsArray:productList,selectedProducts:selectedList,modalMsg:'Products have Approved Successfully',approved:true});
   }
   approve(){
-    var { products } = this.state;
-    var len1 = products.length;
-    var filteredProducts = products.filter((item)=>{
+    var { productsArray } = this.state;
+    var len1 = productsArray.length;
+    var filteredProducts = productsArray.filter((item)=>{
       return !item.checked;
     });
     var len2 = filteredProducts.length;
@@ -184,7 +165,7 @@ class ProductsPage extends React.Component {
       this.setState({modalMsg:'Please select a product'});
     }
 
-    this.setState({products:filteredProducts,approved:true,selectedProducts:[]});
+    this.setState({productsArray:filteredProducts,approved:true,selectedProducts:[]});
   }
   render() {
 
@@ -193,19 +174,18 @@ class ProductsPage extends React.Component {
          <HeaderComponent content='Products List' linkto='/mainPage'/>
          <Grid>
          <Grid.Row/>
-           {this.state.products.map((item,i)=>{
+           {this.state.productsArray.map((item,i)=>{
              return(
                <Grid.Row style={{marginBottom:'-4%'}} key={i}>
                 <Grid.Column width={1}/>
                 <Grid.Column width={4} style={{background:'rgba(255,255,255,0.9)'}}>
-                  <Image style={{marginTop:'26%',marginBottom:'5%'}} src={item.image}/>
+                  <Image style={{marginTop:'26%',marginBottom:'5%'}} src={item.url}/>
                 </Grid.Column>
-                <Grid.Column width={1} style={{background:'rgba(255,255,255,0.9)'}} />
-                <Grid.Column width={6} style={{background:'rgba(255,255,255,0.9)'}} >
+                <Grid.Column width={7} style={{background:'rgba(255,255,255,0.9)'}} >
                   <Grid>
                     <Grid.Row style={{marginTop:'13%',color:'#a3104d',fontSize:'18px',fontWeight:'bold'}}>
                       <Grid.Column width ={16}>
-                        <span>{item.name}</span>
+                        <span>{item.productName}</span>
                        </Grid.Column>
                     </Grid.Row>
                     <Grid.Row style={{marginTop:'-13%'}}>
@@ -222,13 +202,13 @@ class ProductsPage extends React.Component {
                     </Grid.Row>
                     <Grid.Row style={{marginTop:'-17px',marginBottom:'7%'}}>
                       <Grid.Column width={5}>
-                        <p>{item.cp}</p>
+                        <p>€{item.currentPrice}</p>
                       </Grid.Column>
                       <Grid.Column width={5}>
-                        <p>{item.percent}</p>
+                        <p>{item.margin}%</p>
                       </Grid.Column>
                       <Grid.Column width={6}>
-                        <p>{item.np}</p>
+                        <p>€{item.newPrice}</p>
                       </Grid.Column>
                       {/* <Grid.Column width={4} /> */}
                     </Grid.Row>
@@ -252,16 +232,12 @@ class ProductsPage extends React.Component {
                 </Grid.Column>
                 <Grid.Column width={1} />
               </Grid.Row>
-
              )
-           // }
            })}
-
          </Grid>
          <Grid>
            <Grid.Row >
              <Grid.Column width={16}>
-
                 <Button.Group attached='bottom' style={{position:'fixed',zIndex:100,bottom:'0'}}>
                <Button  style={{background:'#a3104d',color:'white',width:'92%'}} onClick={this.viewProducts}>View Products</Button>
                <Button  color='white' style={{border:'1px solid black',color:'#a3104d',width:'92%'}} onClick={this.approve}>Approve</Button>
@@ -282,7 +258,7 @@ class ProductsPage extends React.Component {
                         <Grid.Row>
                           <Grid.Column >
                           <center><Image size='small' style={{position:'absolute',marginLeft:'30%'}}
-                             src={this.state.modalco.image}/></center>
+                             src={this.state.modalco.url}/></center>
                            </Grid.Column>
                          </Grid.Row>
                         <Grid.Row style={{marginTop:'35%'}}>
@@ -295,7 +271,7 @@ class ProductsPage extends React.Component {
                         <Grid.Row style={{fontSize:'18px',color:'#a3104d',marginTop:'-5%'}}>
                           <Grid.Column width={16}>
                             <center>
-                              {this.state.modalco.name}
+                              {this.state.modalco.productName}
                           </center>
                         </Grid.Column>
                         </Grid.Row>
@@ -309,7 +285,7 @@ class ProductsPage extends React.Component {
                         <Grid.Row style={{fontSize:'18px',color:'#a3104d',marginTop:'-5%'}}>
                           <Grid.Column width={16} >
                             <center>
-                              {this.state.modalco.np}
+                              €{this.state.modalco.newPrice}
                           </center>
                         </Grid.Column>
                         </Grid.Row>
@@ -323,7 +299,7 @@ class ProductsPage extends React.Component {
                         <Grid.Row style={{fontSize:'18px',color:'#a3104d',marginTop:'-5%'}}>
                           <Grid.Column width={16}>
                             <center>
-                              {this.state.modalco.cp}
+                              €{this.state.modalco.currentPrice}
                           </center>
                         </Grid.Column>
                         </Grid.Row>
@@ -337,7 +313,7 @@ class ProductsPage extends React.Component {
                         <Grid.Row style={{fontSize:'18px',color:'#a3104d',marginTop:'-5%'}}>
                           <Grid.Column width={16} >
                             <center>
-                              {this.state.modalco.percent}
+                              {this.state.modalco.margin}%
                           </center>
                         </Grid.Column>
                         </Grid.Row>
@@ -351,7 +327,7 @@ class ProductsPage extends React.Component {
                         <Grid.Row style={{fontSize:'18px',color:'#a3104d',marginTop:'-5%'}}>
                           <Grid.Column width={16} >
                             <center>
-                              {this.state.modalco.outDoor_price}
+                              €{this.state.modalco.outOftheDoor}
                           </center>
                         </Grid.Column>
                         </Grid.Row>
@@ -363,7 +339,7 @@ class ProductsPage extends React.Component {
                               føtex Erhverv's Price
                               <br />
                               <br />
-                              <p style={{fontSize:'18px',color:'#a3104d',marginTop:'-3%'}}>{this.state.modalco.føtex_erhverv_price}</p>
+                              <p style={{fontSize:'18px',color:'#a3104d',marginTop:'-3%'}}>€{this.state.modalco.productPrice}</p>
                           </center>
                           </Segment>
                           </center>
@@ -410,7 +386,7 @@ class ProductsPage extends React.Component {
                          <Grid>
                            <Grid.Row style={{marginTop:'5%',marginBottom:'5%',color:'white',fontSize:'20px'}}>
                              <Grid.Column >
-                               <span>{item.name}</span>
+                               <span>{item.productName}</span>
                               </Grid.Column>
                            </Grid.Row>
                            <Grid.Row style={{marginTop:'-13%',color:'white',fontSize:'15px'}}>
@@ -426,13 +402,13 @@ class ProductsPage extends React.Component {
                            </Grid.Row>
                            <Grid.Row style={{marginTop:'-17px',marginBottom:'7%',color:'white',fontSize:'15px'}}>
                              <Grid.Column width={5} >
-                               <center><p>{item.cp}</p></center>
+                               <center><p>€{item.currentPrice}</p></center>
                              </Grid.Column>
                              <Grid.Column width={6}>
-                               <center><p>{item.percent}</p></center>
+                               <center><p>{item.margin}%</p></center>
                              </Grid.Column>
                              <Grid.Column width={5}>
-                               <center><p>{item.np}</p></center>
+                               <center><p>€{item.newPrice}</p></center>
                              </Grid.Column>
                            </Grid.Row>
                          </Grid>

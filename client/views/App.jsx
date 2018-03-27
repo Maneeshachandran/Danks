@@ -29,7 +29,7 @@ class App extends React.Component {
               </Grid.Column>
               <Grid.Column width={2}/>
               <Grid.Column width={6} style={{textAlign:'right'}}>
-                   <Grid>
+                   <Grid as={Link} to='/cfo'>
                      <Grid.Row>
                        <Grid.Column>
                     <Image src='../../images/clip.png' />

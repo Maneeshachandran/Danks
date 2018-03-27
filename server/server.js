@@ -3,6 +3,7 @@ const http = require('http')
     , app = express()
     , server = http.createServer(app);
 
+
 const dataRoute = require('./router/screenScrapper.js');
 
 app.use(function(req, res, next) {
@@ -19,9 +20,9 @@ app.use(function(req, res, next) {
     next();
   },dataRoute);
 
-  module.exports = server.listen(3000, err => {
+  module.exports = server.listen(3030, err => {
     if(err){
       throw err
     }
-    console.log('Screen Scrapper Server running on 3000')
+    console.log('Screen Scrapper Server running on 3030')
   })

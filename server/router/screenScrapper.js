@@ -2,6 +2,7 @@ const scrape =  require('express').Router();
 var express = require('express');
 var request = require('request');
 var cheerio = require('cheerio');
+var file = require('fs');
 var  DilbertURL = 'http://Dilbert.com/strip/';
 
 var out=[];
@@ -73,13 +74,18 @@ scrape.get('/scrape', function(req, res){
         });
         })
 
-        console.log(product_name);
-
+        res.send(out);
     }
-
   })
-  res.send(out)
-  console.log(out);
 })
+
+scrape.post('/getData', (req,res)=>{
+  console.log("inside getData route");
+  var temp=[];
+  var data=file.readFileSync('./data/acPayable.json', 'utf8');
+  var content=JSON.parse(data);
+  res.send(content);
+});
+
 
 module.exports = scrape;
