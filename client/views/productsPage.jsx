@@ -84,7 +84,7 @@ class ProductsPage extends React.Component {
   componentDidMount()
  {
    var context = this;
-  request.get('http://localhost:3000/scrape')
+  request.get('http://localhost:3030/scrape')
    .end(function(err, res){
      if (err || !res.ok) {
            alert('Oh no! error');
