@@ -28,7 +28,7 @@ class MainPage extends React.Component {
           <Grid.Row>
             <Grid.Column width={3}/>
             <Grid.Column width={10}>
-              <Dropdown className='drop1' placeholder="Select a Location" fluid selection options={countryOptions} style={{background:'rgba(214,207,27,1)'}}/>
+              <Dropdown className='drop1' placeholder="Select a Location" fluid selection options={countryOptions} style={{background:'rgba(17, 216, 213,1)'}}/>
             </Grid.Column>
             <Grid.Column width={3}/>
           </Grid.Row>
@@ -42,7 +42,7 @@ class MainPage extends React.Component {
           <Grid.Row>
             <Grid.Column width={3}/>
             <Grid.Column width={10}>
-              <Dropdown className='drop1' placeholder="Select a Product" fluid selection options={productsOptions} style={{background:'rgba(214,207,27,1)',marginBottom:'5%'}}/>
+              <Dropdown className='drop1' placeholder="Select a Product" fluid selection options={productsOptions} style={{background:'rgba(17, 216, 213,1)',marginBottom:'5%'}}/>
             </Grid.Column>
             <Grid.Column width={3}/>
           </Grid.Row>
