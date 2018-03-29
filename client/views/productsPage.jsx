@@ -84,7 +84,7 @@ class ProductsPage extends React.Component {
   componentDidMount()
  {
    var context = this;
-  request.get('http://localhost:3000/scrape')
+  request.get('http://localhost:3030/scrape')
    .end(function(err, res){
      if (err || !res.ok) {
            alert('Oh no! error');
@@ -235,14 +235,20 @@ class ProductsPage extends React.Component {
              )
            })}
          </Grid>
+
          <Grid>
            <Grid.Row >
-             <Grid.Column width={16}>
-                <Button.Group attached='bottom' style={{position:'fixed',zIndex:100,bottom:'0'}}>
-               <Button  style={{background:'#a3104d',color:'white',width:'92%'}} onClick={this.viewProducts}>View Products</Button>
-               <Button  color='white' style={{border:'1px solid black',color:'#a3104d',width:'92%'}} onClick={this.approve}>Approve</Button>
-             </Button.Group>
+
+             <Grid.Column width={16} >
+               <Segment style={{position:'fixed',bottom:'0px',width:'100%',backgroundImage:' url(../images/d1.jpeg)'}}>
+                {/* <Button.Group attached='bottom' style={{position:'fixed',zIndex:100,bottom:'0'}}> */}
+               <Button style={{background:'#a3104d',color:'white',width:'47%'}} onClick={this.viewProducts}>View Products</Button>
+               <Button color='white'   style={{color:'#a3104d',width:'47%',marginLeft:'3.8%'}} onClick={this.approve}>Approve</Button>
+             {/* </Button.Group> */}
+             </Segment>
              </Grid.Column>
+
+
            </Grid.Row>
          </Grid>
          <Grid>
