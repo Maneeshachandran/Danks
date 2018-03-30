@@ -10,19 +10,19 @@ class cfoDashboard extends React.Component {
     super();
     this.state={
       data:[{
-        kpi:'Net profit Margin',
+        kpi:'Net Profit Margin',
         value:3,
         margin:'3%',
         arrow:true
       },
       {
-        kpi:'Account payable turnover',
+        kpi:'Account Payable Turnover',
         value:1,
         margin:'4%',
         arrow:false
       },
       {
-        kpi:'Account receivable turnover',
+        kpi:'Account Receivable Turnover',
         value:5,
         margin:'1%',
         arrow:true
@@ -95,7 +95,7 @@ const data = [
             },
             width: 100,
             height: 100,
-            color: '#42D655',
+            color: '#27AE60',
             r: 15,
             R: 45,
             legendPosition: 'topLeft',
@@ -106,7 +106,7 @@ const data = [
             },
             label:{
                 fontFamily:'Arial',
-                fontSize:10,
+                fontSize:16,
                 fontWeight:true,
                 color:'#ECF0F1'
             }
@@ -157,7 +157,7 @@ const data = [
                    this.state.data.map((item,key)=>{
                       return(
                          <Grid style={{marginTop:'-30px'}}>
-                        <Grid.Row style={{background:'rgb(255,255,255,0.4)'}} as={Link} to={`/newPage/${item.kpi}`}>
+                        <Grid.Row style={{background:'rgb(255,255,255,0.4)',color:'black'}} as={Link} to={`/incomeStatement/${item.kpi}`}>
                            <Grid.Column width={8}>
                             {item.kpi}
                           </Grid.Column>
@@ -190,191 +190,6 @@ const data = [
              </Grid.Row>
           </Grid>
       </div>
-      // <div style={{overflow:'hidden',marginTop:'16.5%'}}>
-      //   <HeaderComponent content='CFO Report' linkto='/'/>
-      //   <Grid>
-      //     <Grid.Row>
-      //      <Pie data={data} />
-      //    </Grid.Row>
-      //   </Grid>
-      //   <Grid>
-      //     <Grid.Row style={{background:'rgb(163,16,77,0.5)'}}>
-      //       <Grid.Column width={1} />
-      //       <Grid.Column width={7}>
-      //         <h2 style={{color:'white'}}>Annual Revenue</h2>
-      //       </Grid.Column>
-      //       <Grid.Column width={7}>
-      //
-      //       </Grid.Column>
-      //       <Grid.Column width={1} />
-      //     </Grid.Row>
-      //     {/* <Grid.Row style={{background:'rgb(255,255,255,0.5)'}}/> */}
-      //     {/* <Grid.Row style={{background:'linear-gradient(to right, #ED8D97 , #E7E0E1)'}}>
-      //       <Grid.Column width={1} />
-      //       <Grid.Column width ={14} >
-      //           <Segment style={{marginTop:'-4%'}}> hi</Segment>
-      //       </Grid.Column>
-      //       <Grid.Column width={1} />
-      //     </Grid.Row> */}
-      //    <Grid.Row style={{background:'rgb(255,255,255,0.5)'}}>
-      //     <Grid.Column width={1} />
-      //     <Grid.Column width={14}>
-      //       <Grid>
-      //         <Grid.Row style={{marginTop:'-2%',color:'rgb(163,16,77)'}}>
-      //           <Grid.Column width={8}>
-      //             <h4><strong>KYI</strong></h4>
-      //           </Grid.Column>
-      //           <Grid.Column width={3}>
-      //             <h4><strong>value</strong></h4>
-      //           </Grid.Column>
-      //           <Grid.Column width={5} style={{paddingLeft:'-2px'}}>
-      //             <h4><strong>% Change</strong></h4>
-      //           </Grid.Column>
-      //         </Grid.Row>
-      //         <Grid.Row>
-      //           <Grid.Column>
-      //               <Divider style={{marginTop:'-4%',background:'black',borderBottomWidth:'0px'}} />
-      //           </Grid.Column>
-      //         </Grid.Row>
-      //         <Grid.Row style={{marginTop:'-8%'}}>
-      //           <Grid.Column width={8}>
-      //             Net Profit Margin
-      //           </Grid.Column>
-      //           <Grid.Column width={3} style={{textAlign:'center'}}>
-      //             3.33
-      //           </Grid.Column>
-      //           <Grid.Column width={2} style={{textAlign:'center'}}>
-      //             <Image style={{marginTop:'3px',marginLeft:'20px'}} src='../../images/chevron-up.png'/>
-      //           </Grid.Column>
-      //           <Grid.Column width={3} style={{paddingRight:'5%'}}>
-      //             2%
-      //           </Grid.Column>
-      //         </Grid.Row>
-      //         <Grid.Row >
-      //           <Grid.Column>
-      //               <Divider style={{marginTop:'-4%',background:'black',borderBottomWidth:'0px'}} />
-      //           </Grid.Column>
-      //         </Grid.Row>
-      //         <Grid.Row as={Link} to='/payableTrunover' style={{marginTop:'-8%'}}>
-      //           <Grid.Column width={8}>
-      //             A/C payable Turnover
-      //           </Grid.Column>
-      //           <Grid.Column width={3} style={{textAlign:'center'}} >
-      //             4
-      //           </Grid.Column>
-      //           <Grid.Column width={2} style={{textAlign:'center'}}>
-      //             <Image style={{marginTop:'3px',marginLeft:'20px'}} src='../../images/chevron-down.png'/>
-      //           </Grid.Column>
-      //           <Grid.Column width={3} style={{paddingRight:'5%'}}>
-      //             4%
-      //           </Grid.Column>
-      //         </Grid.Row>
-      //         <Grid.Row>
-      //           <Grid.Column>
-      //               <Divider style={{marginTop:'-4%',background:'black',borderBottomWidth:'0px'}} />
-      //           </Grid.Column>
-      //         </Grid.Row>
-      //         <Grid.Row style={{marginTop:'-8%'}}>
-      //           <Grid.Column width={9}>
-      //             A/C Receivable Turnover
-      //           </Grid.Column>
-      //           <Grid.Column width={2} style={{paddingLeft:'1px'}}>
-      //             2.22
-      //           </Grid.Column>
-      //           <Grid.Column width={2} style={{textAlign:'center'}}>
-      //             <Image style={{marginTop:'3px',marginLeft:'20px'}} src='../../images/chevron-up.png'/>
-      //           </Grid.Column>
-      //           <Grid.Column width={3} style={{paddingRight:'5%'}}>
-      //             5%
-      //           </Grid.Column>
-      //         </Grid.Row>
-      //         <Grid.Row>
-      //           <Grid.Column>
-      //               <Divider style={{marginTop:'-4%',background:'black',borderBottomWidth:'0px'}} />
-      //           </Grid.Column>
-      //         </Grid.Row>
-      //         <Grid.Row style={{marginTop:'-8%'}}>
-      //           <Grid.Column width={8}>
-      //             Current Ratio
-      //           </Grid.Column>
-      //           <Grid.Column width={3} style={{textAlign:'center'}}>
-      //             6
-      //           </Grid.Column>
-      //           <Grid.Column width={2} style={{textAlign:'center'}}>
-      //             <Image style={{marginTop:'3px',marginLeft:'20px'}} src='../../images/chevron-down.png'/>
-      //           </Grid.Column>
-      //           <Grid.Column width={3} style={{paddingRight:'5%'}}>
-      //             2%
-      //           </Grid.Column>
-      //         </Grid.Row>
-      //         <Grid.Row >
-      //           <Grid.Column>
-      //               <Divider style={{marginTop:'-4%',background:'black',borderBottomWidth:'0px'}} />
-      //           </Grid.Column>
-      //         </Grid.Row>
-      //         <Grid.Row style={{marginTop:'-8%'}}>
-      //           <Grid.Column width={8}>
-      //             Working Capital
-      //           </Grid.Column>
-      //           <Grid.Column width={3} style={{textAlign:'center'}}>
-      //             4.4
-      //           </Grid.Column>
-      //           <Grid.Column width={2} style={{textAlign:'center'}}>
-      //             <Image style={{marginTop:'3px',marginLeft:'20px'}} src='../../images/chevron-up.png'/>
-      //           </Grid.Column>
-      //           <Grid.Column width={3} style={{paddingRight:'5%'}}>
-      //             3%
-      //           </Grid.Column>
-      //         </Grid.Row>
-      //         <Grid.Row>
-      //           <Grid.Column>
-      //               <Divider style={{marginTop:'-4%',background:'black',borderBottomWidth:'0px'}} />
-      //           </Grid.Column>
-      //         </Grid.Row>
-      //         <Grid.Row style={{marginTop:'-8%'}}>
-      //           <Grid.Column width={8}>
-      //             Budget Variance
-      //           </Grid.Column>
-      //           <Grid.Column width={3} style={{textAlign:'center'}}>
-      //             5
-      //           </Grid.Column>
-      //           <Grid.Column width={2} style={{textAlign:'center'}}>
-      //             <Image style={{marginTop:'3px',marginLeft:'20px'}} src='../../images/chevron-up.png'/>
-      //           </Grid.Column>
-      //           <Grid.Column width={3} style={{paddingRight:'5%'}}>
-      //             3%
-      //           </Grid.Column>
-      //         </Grid.Row>
-      //         <Grid.Row>
-      //           <Grid.Column>
-      //               <Divider style={{marginTop:'-4%',background:'black',borderBottomWidth:'0px'}} />
-      //           </Grid.Column>
-      //         </Grid.Row>
-      //         <Grid.Row style={{marginTop:'-8%'}}>
-      //           <Grid.Column width={8}>
-      //             Net Promotor Score
-      //           </Grid.Column>
-      //           <Grid.Column width={3} style={{textAlign:'center'}}>
-      //             1.3
-      //           </Grid.Column>
-      //           <Grid.Column width={2} style={{textAlign:'center'}}>
-      //             <Image style={{marginTop:'3px',marginLeft:'20px'}} src='../../images/chevron-down.png'/>
-      //           </Grid.Column>
-      //           <Grid.Column width={3} style={{paddingRight:'5%'}}>
-      //             7%
-      //           </Grid.Column>
-      //         </Grid.Row>
-      //         <Grid.Row>
-      //           <Grid.Column>
-      //               <Divider style={{marginTop:'-4%',background:'black',borderBottomWidth:'0px'}} />
-      //           </Grid.Column>
-      //         </Grid.Row>
-      //       </Grid>
-      //     </Grid.Column>
-      //     <Grid.Column width={1}/>
-      // </Grid.Row>
-      // </Grid>
-      // </div>
     );
   }
 }
