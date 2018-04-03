@@ -6,7 +6,7 @@ var config = {
    },
    devServer: {
       inline: true,
-      port: 8181
+      port: 8484
    },
    module: {
       loaders: [

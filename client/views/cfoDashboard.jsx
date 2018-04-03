@@ -16,13 +16,13 @@ class cfoDashboard extends React.Component {
         arrow:true
       },
       {
-        kpi:'Account Payable Turnover',
+        kpi:'Accounts Payable Turnover',
         value:1,
         margin:'4%',
         arrow:false
       },
       {
-        kpi:'Account Receivable Turnover',
+        kpi:'Accounts Receivable Turnover',
         value:5,
         margin:'1%',
         arrow:true
@@ -76,12 +76,12 @@ class cfoDashboard extends React.Component {
 
 const data = [
   {
-    "name": "Achieved ",
-    "population": 8630364
+    "name": "750K",
+    "population": 7500000
   },
   {
-    "name": "Yet to",
-    "population": 1916658
+    "name": "250K",
+    "population": 2000000
   }
 ]
 
@@ -95,7 +95,7 @@ const data = [
             },
             width: 100,
             height: 100,
-            color: '#27AE60',
+            color: '#2980B9',
             r: 15,
             R: 45,
             legendPosition: 'topLeft',
@@ -122,7 +122,17 @@ const data = [
                  <h3 style={{color:'white',marginTop:'45px',fontSize:'19px'}}>Annual Revenue</h3>
                </Grid.Column>
                <Grid.Column width={7} style={{marginLeft:'5.2%'}}>
-                 <Pie data={data} options={options} accessorKey="population"  />
+                 <Pie data={data} options={options} accessorKey="population"
+                  pallete={
+                    [
+                      { 'r': 24, 'g': 175, 'b': 35 },
+                      { 'r': 219, 'g': 40, 'b': 40 },
+
+                    ]
+                  }
+                
+
+                />
                </Grid.Column>
                <Grid.Column width={1} />
              </Grid.Row>
@@ -134,13 +144,13 @@ const data = [
                  <Grid style={{background:'rgb(255,255,255,0.5)',marginBottom:'15px'}}>
                    <Grid.Row style={{marginTop:'-2%',color:'#a3104d'}}>
                      <Grid.Column width={8}>
-                        <h4><strong>KYI</strong></h4>
+                        <h4><strong>KPI</strong></h4>
                      </Grid.Column>
                      <Grid.Column width={3}>
                         <h4><strong>Value</strong></h4>
                       </Grid.Column>
-                      <Grid.Column width={5} style={{paddingLeft:'50px'}}>
-                        <h4><strong>%</strong></h4>
+                      <Grid.Column width={5} style={{paddingLeft:'-5px'}}>
+                        <h4><strong>% Change</strong></h4>
                      </Grid.Column>
                    </Grid.Row>
                  </Grid>
