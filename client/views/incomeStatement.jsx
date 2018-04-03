@@ -580,6 +580,22 @@ export default class IncomeStatement extends React.Component {
             </Grid.Column>
           <Grid.Column width={1} />
         </Grid.Row>
+        <Grid.Row style={{marginTop:'7px',background:'rgb(255,255,255,0.4)'}}>
+          <Grid.Column width={1} />
+          <Grid.Column width={5}>
+            <div style={{width:'10px',height:'10px',background:'#3199DE'}}></div>
+            <p style={{fontSize:'13px'}}>NP -Net Profit</p>
+          </Grid.Column>
+          <Grid.Column width={5}>
+            <div style={{width:'10px',height:'10px',background:'#2980B9'}} />
+            <p style={{fontSize:'13px'}}>NP -Net Income</p>
+          </Grid.Column>
+          <Grid.Column width={4}>
+            <div style={{width:'10px',height:'10px',background:'#0d5c91'}} />
+            <p style={{fontSize:'13px'}}>NP -Margin</p>
+          </Grid.Column>
+          <Grid.Column width={1} />
+        </Grid.Row>
       </Grid>
       )
     }
