@@ -278,13 +278,13 @@ export default class IncomeStatement extends React.Component {
     //     console.log("inside region1",item.region);
     //     console.log("inside category1",item.segment);
     //     console.log('inside1',item.product);
-    //     this.setState({filteredData:item.data,filteredOptions:item.options}); 
+    //     this.setState({filteredData:item.data,filteredOptions:item.options});
     //     }
       //   else
       //   {
       //     console.log('aaaaaaaaaaaaaa');
       // //  alert('No data');
-      //  this.setState({filteredData:[],filteredOptions:{}}); 
+      //  this.setState({filteredData:[],filteredOptions:{}});
       // }
     // })
     if(this.state.selectedProduct == 'Apple'){
@@ -320,8 +320,8 @@ export default class IncomeStatement extends React.Component {
           "name": "2018 M"
         }],
       ]
-  
-    
+
+
     this.setState({data:data,open:false});
   }
 }
@@ -562,7 +562,7 @@ export default class IncomeStatement extends React.Component {
         <Grid.Row style={{marginTop:'7px',background:'rgb(255,255,255,0.4)'}}>
           <Grid.Column width={1} />
             <Grid.Column width={14} >
-            
+
               <Bar data={this.state.data} options={this.state.options} accessorKey="v" />
               {/* <Bar
                   data={barData}
@@ -602,12 +602,12 @@ export default class IncomeStatement extends React.Component {
     else if(this.props.match.params.value == 'Accounts Payable Turnover' || this.props.match.params.value == 'Accounts Receivable Turnover'){
       display = (
       <Grid>
-        <Grid.Row style={{background:'rgb(163,16,77,0.5)',marginTop:'70px',color:'white'}}>
+        <Grid.Row style={{marginTop:'70px',color:'black'}}>
           <Grid.Column width={16}>
-            <h2 style={{marginLeft:'15px'}}>Working Capital</h2>
+            <h2 style={{marginLeft:'15px', textAlign:'center'}}>Working Capital</h2>
           </Grid.Column>
         </Grid.Row>
-        <Grid.Row style={{background:'rgb(255,255,255,0.4)',color:'#a3104d',marginTop:'15px'}}>
+        <Grid.Row style={{background:'rgb(255,255,255,0.4)',color:'#1A237E',marginTop:'15px'}}>
           <Grid.Column width={16}>
             <center><h3>Accounts Payable</h3></center>
           </Grid.Column>
@@ -619,7 +619,7 @@ export default class IncomeStatement extends React.Component {
           </Grid.Column>
           <Grid.Column width={1}/>
         </Grid.Row>
-        <Grid.Row style={{background:'rgb(255,255,255,0.4)',color:'#a3104d',marginTop:'15px'}}>
+        <Grid.Row style={{background:'rgb(255,255,255,0.4)',color:'#1A237E',marginTop:'15px'}}>
           <Grid.Column width={16}>
             <center><h3>Accounts Receivable</h3></center>
           </Grid.Column>

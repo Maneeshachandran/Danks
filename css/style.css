@@ -10,3 +10,9 @@
  .drop1.ui.fluid.dropdown{
    color: white;
  }
+ .ui.default.dropdown:not(.button)>.text, .ui.dropdown:not(.button)>.default.text{
+   color: black !important;
+ }
+.ui.selection.active.dropdown:hover .menu{
+  background-color: lightgrey !important;
+}

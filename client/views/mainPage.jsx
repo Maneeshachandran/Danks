@@ -15,41 +15,42 @@ class MainPage extends React.Component {
 
    render() {
       return (
-        <div style={{overflow:'hidden',marginTop:'12%'}}>
+        <div style={{height: '100%', overflow:'hidden', overflowX:'hidden'}}>
           <HeaderComponent content='Dynamic Pricing' linkto='/'/>
-          <Grid>
+          <Grid style={{marginTop:'18%'}}>
           <Grid.Row style={{marginTop:'5%'}}>
             <Grid.Column>
               <center>
-              <Image src='../../images/locator.png' />
+              <Image src='../../images/pin.png' />
               </center>
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>
             <Grid.Column width={3}/>
             <Grid.Column width={10}>
-              <Dropdown className='drop1' placeholder="Select a Location" fluid selection options={countryOptions} style={{background:'rgba(17, 216, 213,1)'}}/>
+              <Dropdown placeholder="Select a Location" fluid selection options={countryOptions} style={{background:'lightgrey'}}/>
             </Grid.Column>
             <Grid.Column width={3}/>
           </Grid.Row>
           <Grid.Row style={{marginTop:'10%'}}>
             <Grid.Column>
               <center>
-              <Image src='../../images/cart.png' />
+              <Image src='../../images/shopping-bag (1).png' />
               </center>
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>
             <Grid.Column width={3}/>
             <Grid.Column width={10}>
-              <Dropdown className='drop1' placeholder="Select a Product" fluid selection options={productsOptions} style={{background:'rgba(17, 216, 213,1)',marginBottom:'5%'}}/>
+              <Dropdown placeholder="Select a Product" fluid selection options={productsOptions} style={{background:'lightgrey',marginBottom:'5%'}}/>
             </Grid.Column>
             <Grid.Column width={3}/>
           </Grid.Row>
+          <Grid.Row></Grid.Row>
           <Grid.Row textAlign='center' style={{marginTop:'4%'}}>
             <Grid.Column width={4}/>
             <Grid.Column width={8}>
-              <Button inverted fluid size='huge' as={Link} to='/productsListPage' color='white'>Submit</Button>
+              <Button fluid size='large' as={Link} to='/productsListPage' style={{backgroundColor:'#1A237E', color:'#EEEEEE'}}>Submit</Button>
             </Grid.Column>
             <Grid.Column width={4}/>
           </Grid.Row>

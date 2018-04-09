@@ -5,7 +5,7 @@ import CardComponent from '../components/cardComponent.jsx';
 class HeaderComponent extends React.Component {
   render() {
      return (
-       <Segment stacked style={{background:'#a3104d',position:'fixed',top:'0',zIndex:'100',width:'100%'}}>
+       <Segment stacked style={{background:'#1A237E',position:'fixed',top:'0',zIndex:'100',width:'100%'}}>
          <Grid >
          <Grid.Row>
            <Grid.Column width={3} style={{textAlign:'center'}}>

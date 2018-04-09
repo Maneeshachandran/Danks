@@ -116,10 +116,10 @@ const data = [
       <div style={{overflow:'hidden',marginTop:'16.5%'}}>
         <HeaderComponent content='CFO Report' linkto='/'/>
           <Grid>
-             <Grid.Row style={{background:'rgb(163,16,77,0.5)'}}>
+             <Grid.Row >
                <Grid.Column width={1} />
                <Grid.Column width={7}>
-                 <h3 style={{color:'white',marginTop:'45px',fontSize:'19px'}}>Annual Revenue</h3>
+                 <h3 style={{color:'black',marginTop:'45px',fontSize:'19px'}}>Annual Revenue</h3>
                </Grid.Column>
                <Grid.Column width={7} style={{marginLeft:'5.2%'}}>
                  <Pie data={data} options={options} accessorKey="population"
@@ -130,7 +130,7 @@ const data = [
 
                     ]
                   }
-                
+
 
                 />
                </Grid.Column>
@@ -142,7 +142,7 @@ const data = [
                <Grid.Column width={1} />
                <Grid.Column width={14}>
                  <Grid style={{background:'rgb(255,255,255,0.5)',marginBottom:'15px'}}>
-                   <Grid.Row style={{marginTop:'-2%',color:'#a3104d'}}>
+                   <Grid.Row style={{marginTop:'-2%',color:'#1A237E'}}>
                      <Grid.Column width={8}>
                         <h4><strong>KPI</strong></h4>
                      </Grid.Column>
