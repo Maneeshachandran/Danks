@@ -14,61 +14,28 @@ scrape.get('/scrape', function(req, res){
   request(url, function(error, response, html){
     if(!error){
         var $ = cheerio.load(html);
-        var price= []
-          , title = []
-          , margin = [25,34,56,61,68,72,45,63,83,77]
-          , currentPrice = [6,7,5,8,5,6,21,26,29,13]
-          , newPrice = [4,5,4,6,4,3,18,17,18,15]
-          , outOftheDoor = [4,5,3,5,2,4,15,18,17,16];
-        var data, data1,product_name=[],product_price_description=[];
-        var product_price = [], companyName = ["rema1000", "rema1000", "rema1000", "rema1000", "rema1000", "rema1000", "rema1000", "rema1000", "rema1000", "rema1000"] ,
-        image = ["http://www.freepngimg.com/download/orange/3-2-orange-png-image.png",
-                  "http://www.freepngimg.com/download/broccoli/3-2-broccoli-transparent.png",
-                  "http://www.pngmart.com/files/1/Green-Grapes-PNG.png",
-                  "https://meny.dk/sites/meny.dk/files/styles/product_image/public/z_original_252_passionsfrugt.png?itok=p1yhUzNy",
-                  "http://www.freepngimg.com/download/broccoli/3-2-broccoli-transparent.png",
-                  "http://www.freepngimg.com/download/broccoli/3-2-broccoli-transparent.png",
-                "http://earthcontrol.dk/wp-content/uploads/2014/05/EC-pine-kernels-green.png",
-              "https://vignette.wikia.nocookie.net/aonoexorcist/images/f/fb/Pineapple.png/revision/latest?cb=20141210014032",
-            "http://pngimg.com/uploads/watermelon/watermelon_PNG2660.png"];
-        var json = {name : "", price : ""};
-      // $('.product_list_name').filter(function(){
-      //   data = $(this);
-      //   var title = data.text().trim();
-      //   product_name.push(title);
-      //   json.name = product_name;
-      // })
-
-      // $('.product_list_price').filter(function(){
-      //   data1 = $(this);
-      //   var price = data1.first().text().trim();
-      //   product_price_description.push(price);
-      // })
-      //
-      // $('.footer-iposen-title').filter(function(){
-      //     data2 = $(this);
-      //     var company = data2.text().trim();
-      //     companyName.push(company);
-      // })
-
-      // $('.thumbnail').filter(function(){
-      //     data3 = $(this);
-      //     console.log(data3);
-      //     var images = data3.text().trim();
-      //     image.push(images);
-      // })
-      // product_price_description.map((item)=>{
-      //   item = item.replace(/\r?\n|\r/g, " ");
-      //   product_price.push(item.substr(0,6));
-      //   json.price = product_price;
-      //   // var href = $('img', this).attr('src');
-      // })
-        // json.company = companyName[0];
+        var product_price = [2,7,12,25,20,15,20,15,16,10]
+          , product_name = ['Banan', 'Kiwi', 'Mango', 'Vandmelon', 'Druer', 'Mush Melon', 'Æble', 'Jordbær', 'Ananas', 'Granatæble']
+          , margin = [50,65,45,80,56,80,35,68,35,45]
+          , currentPrice = [2,7,12,25,20,15,20,15,16,10]
+          , newPrice = [2,6,12,24,19,15,21,14,16,10]
+          , outOftheDoor = [1,4,10,20,18,14,18,9,12,7]
+          , companyName = "rema1000"
+          , image = ["http://natureandnutrition.com/wp-content/uploads/2015/04/Health-Benefits-of-Bananas.jpg"
+          , "https://cdn.grofers.com/app/images/products/full_screen/pro_294783.jpg"
+          , "https://2rt9loawzcmbvlze40mhj9n0-wpengine.netdna-ssl.com/wp-content/uploads/2015/04/mangoes-760x428.jpg"
+          , "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyXDxbvNdHNtWDmdqyIc-CjcYPlAHVi8VTzixlTvVF8WTk_K_Ljg"
+          , "https://5.imimg.com/data5/CU/PW/MY-5137401/purple-grapes-500x500.jpg"
+          , "https://4.imimg.com/data4/UT/OJ/MY-24421102/muskmelon-1-500x500.png"
+          , "https://ecs7.tokopedia.net/img/product-1/2016/7/21/6322224/6322224_ac9c1e18-fe9f-4b26-a5ae-c08061bf0977.jpg"
+          , "https://cdn1.medicalnewstoday.com/content/images/articles/271/271285/three-strawberries.jpg"
+          , "https://keelings.ie/wp-content/uploads/2016/04/pineapple-1.jpg"
+          , "https://www.organicfacts.net/wp-content/uploads/2013/05/Pomegranate11.jpg"];
         product_name.map((item,key)=>{
           console.log(item);
           out.push({'productName':item,
           'productPrice':product_price[key],
-          'companyName':companyName[0],
+          'companyName':companyName,
           'margin': margin[key],
           'currentPrice': currentPrice[key],
           'newPrice': newPrice[key],
