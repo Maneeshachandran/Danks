@@ -10,7 +10,7 @@ var out=[];
 scrape.get('/scrape', function(req, res){
   console.log('inside scrape route');
   // url = 'https://www.iposen.dk/shop/display/products?offers=1&category_id=41';
-  var product_price = [2,7,12,25,20,15,20,15,16,10]
+  var product_price = [3,8,12,27,24,17,25,18,18,14]
     , product_name = ['Banan', 'Kiwi', 'Mango', 'Vandmelon', 'Druer', 'Mush Melon', 'Æble', 'Jordbær', 'Ananas', 'Granatæble']
     , margin = [50,65,45,80,56,80,35,68,35,45]
     , currentPrice = [2,7,12,25,20,15,20,15,16,10]

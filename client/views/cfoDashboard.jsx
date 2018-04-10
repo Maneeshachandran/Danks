@@ -117,7 +117,6 @@ const data = [
       labels: ['0 - 30', '31 - 60', '61 - 90'],
       datasets: [
         {
-          display: false,
           backgroundColor: '#1A237E',
           data: [365, 449, 415]
         },
@@ -126,6 +125,23 @@ const data = [
     const addPay_legend = {
       "display": false
     };
+    const addPay_options = {
+      scales : {
+        xAxes : [
+          {
+            xLabel: 'Days',
+            fontSize: '18px',
+            fontColor: '#1A237E'
+          }
+        ],
+        yAxes : [
+          {
+            fontSize: '18px',
+            fontColor: '#1A237E'
+          }
+        ]
+      }
+    }
 
     const accRec_data = {
       labels: ['0 - 30', '31 - 60', '61 - 90'],
@@ -158,7 +174,7 @@ const data = [
                      <Divider />
                      <center>
                        <Statistic size='tiny'>
-                        <Statistic.Value>€ 5,550</Statistic.Value>
+                        <Statistic.Value>kr 57,899</Statistic.Value>
                         <Statistic.Label style={{fontColor: '#1A237E', fontStyle: 'italic'}}>YTD</Statistic.Label>
                       </Statistic>
                       <Divider />
@@ -197,7 +213,7 @@ const data = [
                                 <Image src='./../images/chevron-down.png' style={{marginRight:'4px'}}/>
                                 17%
                               </Statistic.Value>
-                              <Statistic.Label style={{fontColor: '#1A237E', fontStyle: 'italic'}}>2016</Statistic.Label>
+                              <Statistic.Label style={{fontColor: '#1A237E', fontStyle: 'italic'}}>from 2016</Statistic.Label>
                             </Statistic>
                           </center>
                         </Card.Content>
@@ -222,7 +238,7 @@ const data = [
                        </Card.Header>
                        <Divider />
                        <center>
-                         <HorizontalBar data={accPay_data} legend={addPay_legend} width={100} height={120} />
+                         <HorizontalBar data={accPay_data} legend={addPay_legend} options={addPay_options} width={100} height={120} />
                        </center>
                        <br />
                      </Card.Content>
@@ -235,12 +251,12 @@ const data = [
                      <Card.Content>
                        <Card.Header>
                          <center>
-                           <span style={{color:'#1A237E', fontSize:'16.8px', textAlign: 'center'}}> Acc Receivable </span>
+                           <span style={{color:'#1A237E', fontSize:'16.8px', textAlign: 'center'}}> Accounts Receivable </span>
                          </center>
                        </Card.Header>
                        <Divider />
                        <center>
-                         <HorizontalBar data={accRec_data} legend={addRec_legend} width={100} height={120} />
+                         <HorizontalBar data={accRec_data} legend={addRec_legend} options={addPay_options} width={100} height={120} />
                        </center>
                        <br />
                      </Card.Content>
@@ -277,7 +293,7 @@ const data = [
                               <Image src='./../images/chevron-up.png' style={{marginRight:'4px'}}/>
                               8%
                             </Statistic.Value>
-                            <Statistic.Label style={{fontColor: '#1A237E', fontStyle: 'italic'}}>2016</Statistic.Label>
+                            <Statistic.Label style={{fontColor: '#1A237E', fontStyle: 'italic'}}>from 2016</Statistic.Label>
                           </Statistic>
                         </center>
                       </Card.Content>
@@ -310,7 +326,7 @@ const data = [
                               <Image src='./../images/chevron-up.png' style={{marginRight:'4px'}}/>
                               20%
                             </Statistic.Value>
-                            <Statistic.Label style={{fontColor: '#1A237E', fontStyle: 'italic'}}>2016</Statistic.Label>
+                            <Statistic.Label style={{fontColor: '#1A237E', fontStyle: 'italic'}}>from 2016</Statistic.Label>
                           </Statistic>
                         </center>
                       </Card.Content>

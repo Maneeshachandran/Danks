@@ -349,7 +349,7 @@ class ProductsPage extends React.Component {
                              <center>
                              <Segment style={{width:'50%',border:'1px solid #1A237E'}}>
                              <center>
-                               føtex Erhverv's Price
+                              Rema1000's
                                <br />
                                <br />
                                <p style={{fontSize:'18px',color:'#1A237E',marginTop:'-3%'}}>€{this.state.modalco.productPrice}</p>
