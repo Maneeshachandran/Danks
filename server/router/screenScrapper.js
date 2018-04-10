@@ -14,11 +14,14 @@ scrape.get('/scrape', function(req, res){
   request(url, function(error, response, html){
     if(!error){
         var $ = cheerio.load(html);
-        var price= [], title = [], margin = [25,34,56,61,68,72,45,63,83],
-        currentPrice = [6,7,5,8,5,6,21,26,29], newPrice = [4,5,4,6,4,3,18,17,18]
-        outOftheDoor = [4,5,3,5,2,4,15,18,17];
+        var price= []
+          , title = []
+          , margin = [25,34,56,61,68,72,45,63,83,77]
+          , currentPrice = [6,7,5,8,5,6,21,26,29,13]
+          , newPrice = [4,5,4,6,4,3,18,17,18,15]
+          , outOftheDoor = [4,5,3,5,2,4,15,18,17,16];
         var data, data1,product_name=[],product_price_description=[];
-        var product_price = [], companyName = [] ,
+        var product_price = [], companyName = ["rema1000", "rema1000", "rema1000", "rema1000", "rema1000", "rema1000", "rema1000", "rema1000", "rema1000", "rema1000"] ,
         image = ["http://www.freepngimg.com/download/orange/3-2-orange-png-image.png",
                   "http://www.freepngimg.com/download/broccoli/3-2-broccoli-transparent.png",
                   "http://www.pngmart.com/files/1/Green-Grapes-PNG.png",
@@ -29,24 +32,24 @@ scrape.get('/scrape', function(req, res){
               "https://vignette.wikia.nocookie.net/aonoexorcist/images/f/fb/Pineapple.png/revision/latest?cb=20141210014032",
             "http://pngimg.com/uploads/watermelon/watermelon_PNG2660.png"];
         var json = {name : "", price : ""};
-      $('.product_list_name').filter(function(){
-        data = $(this);
-        var title = data.text().trim();
-        product_name.push(title);
-        json.name = product_name;
-      })
+      // $('.product_list_name').filter(function(){
+      //   data = $(this);
+      //   var title = data.text().trim();
+      //   product_name.push(title);
+      //   json.name = product_name;
+      // })
 
-      $('.product_list_price').filter(function(){
-        data1 = $(this);
-        var price = data1.first().text().trim();
-        product_price_description.push(price);
-      })
-
-      $('.footer-iposen-title').filter(function(){
-          data2 = $(this);
-          var company = data2.text().trim();
-          companyName.push(company);
-      })
+      // $('.product_list_price').filter(function(){
+      //   data1 = $(this);
+      //   var price = data1.first().text().trim();
+      //   product_price_description.push(price);
+      // })
+      //
+      // $('.footer-iposen-title').filter(function(){
+      //     data2 = $(this);
+      //     var company = data2.text().trim();
+      //     companyName.push(company);
+      // })
 
       // $('.thumbnail').filter(function(){
       //     data3 = $(this);
@@ -54,13 +57,13 @@ scrape.get('/scrape', function(req, res){
       //     var images = data3.text().trim();
       //     image.push(images);
       // })
-      product_price_description.map((item)=>{
-        item = item.replace(/\r?\n|\r/g, " ");
-        product_price.push(item.substr(0,6));
-        json.price = product_price;
-        // var href = $('img', this).attr('src');
-      })
-        json.company = companyName[0];
+      // product_price_description.map((item)=>{
+      //   item = item.replace(/\r?\n|\r/g, " ");
+      //   product_price.push(item.substr(0,6));
+      //   json.price = product_price;
+      //   // var href = $('img', this).attr('src');
+      // })
+        // json.company = companyName[0];
         product_name.map((item,key)=>{
           console.log(item);
           out.push({'productName':item,

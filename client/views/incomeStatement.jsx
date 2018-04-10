@@ -42,24 +42,14 @@ export default class IncomeStatement extends React.Component {
         }],
         [{
           "v": 69,
-          "name": "2016 NI"
+          "name": "2016 NS"
         }, {
           "v": 62,
-          "name": "2017 NI"
+          "name": "2017 NS"
         },{
           "v": 59,
-          "name": "2018 NI"
-        }],
-        [{
-          "v": 80,
-          "name": "2016 M"
-        }, {
-          "v": 74,
-          "name": "2017 M"
-        },{
-          "v": 66,
-          "name": "2018 M"
-        }],
+          "name": "2018 NS"
+        }]
       ],
       options : {
         width: 250,
@@ -108,7 +98,7 @@ export default class IncomeStatement extends React.Component {
         },
       dataSet:[{
         'region':'Sollentuna',
-        'segment':'Vegetables',
+        'category':'Vegetables',
         'product':'Apple',
         'data':[[{
           "v": 49,
@@ -122,13 +112,13 @@ export default class IncomeStatement extends React.Component {
         }],
         [{
           "v": 69,
-          "name": "Net Income"
+          "name": "Net Sales"
         }, {
           "v": 62,
-          "name": "Net Income"
+          "name": "Net Sales"
         },{
           "v": 59,
-          "name": "Net Income"
+          "name": "Net Sales"
         }]],
        'options' : {
           width: 250,
@@ -178,7 +168,7 @@ export default class IncomeStatement extends React.Component {
         }
       },{
         'region':'Sollentuna',
-        'segment':'Fruits',
+        'category':'Fruits',
         'product':'Banana',
         'data':[[{
           "v": 61,
@@ -192,13 +182,13 @@ export default class IncomeStatement extends React.Component {
         }],
         [{
           "v": 70,
-          "name": "Net Income"
+          "name": "Net Sales"
         }, {
           "v": 90,
-          "name": "Net Income"
+          "name": "Net Sales"
         },{
           "v": 101,
-          "name": "Net Income"
+          "name": "Net Sales"
         }]],
        'options' : {
           width: 250,
@@ -287,7 +277,7 @@ export default class IncomeStatement extends React.Component {
       //  this.setState({filteredData:[],filteredOptions:{}});
       // }
     // })
-    if(this.state.selectedProduct == 'Apple'){
+    if(this.state.selectedCategory == 'Vegetables'){
       let data = [
         [{
           "v": 66,
@@ -308,17 +298,7 @@ export default class IncomeStatement extends React.Component {
         },{
           "v": 111,
           "name": "2018 NI"
-        }],
-        [{
-          "v": 83,
-          "name": "2016 M"
-        }, {
-          "v": 90,
-          "name": "2017 M"
-        },{
-          "v": 126,
-          "name": "2018 M"
-        }],
+        }]
       ]
 
 
@@ -340,19 +320,6 @@ export default class IncomeStatement extends React.Component {
         "name": "Paid"
       }],
       [{
-        "v": 69,
-        "name": "Yet to"
-      }, {
-        "v": 62,
-        "name": "Yet to"
-      },{
-        "v": 89,
-        "name": "Yet to"
-      }],
-    ]
-
-    let data2 = [
-      [{
         "v": 19,
         "name": "Received"
       }, {
@@ -361,18 +328,31 @@ export default class IncomeStatement extends React.Component {
       },{
         "v": 40,
         "name": "Received"
-      }],
-      [{
-        "v": 99,
-        "name": "Yet to"
-      }, {
-        "v": 110,
-        "name": "Yet to"
-      },{
-        "v": 88,
-        "name": "Yet to"
-      }],
+      }]
     ]
+
+    // let data2 = [
+    //   [{
+    //     "v": 19,
+    //     "name": "Received"
+    //   }, {
+    //     "v": 90,
+    //     "name": "Received"
+    //   },{
+    //     "v": 40,
+    //     "name": "Received"
+    //   }],
+    //   [{
+    //     "v": 99,
+    //     "name": "Yet to"
+    //   }, {
+    //     "v": 110,
+    //     "name": "Yet to"
+    //   },{
+    //     "v": 88,
+    //     "name": "Yet to"
+    //   }],
+    // ]
 
     let options = {
       width: 250,
@@ -526,7 +506,7 @@ export default class IncomeStatement extends React.Component {
     //       hoverBorderColor: 'rgba(255,99,132,1)',
     //       data: [65, 59, 80]
     //     },{
-    //       label: 'Net Income',
+    //       label: 'Net Sales',
     //       backgroundColor: 'rgba(255,99,132,0.2)',
     //       borderColor: 'rgba(255,99,132,1)',
     //       borderWidth: 1,
@@ -546,13 +526,11 @@ export default class IncomeStatement extends React.Component {
           <Grid.Column width={1}/>
           <Grid.Column width={4}>
             <h3> Region</h3>
-            <h3> Segment</h3>
-            <h3> Product</h3>
+            <h3> Category</h3>
           </Grid.Column>
           <Grid.Column width={4}>
             <h3><i>{this.state.selectedLocation}</i></h3>
             <h3><i>{this.state.selectedCategory}</i></h3>
-            <h3><i>{this.state.selectedProduct}</i></h3>
           </Grid.Column>
           <Grid.Column width={5}>
             <Image size='mini' style={{marginTop:'10px',marginLeft:'40px'}} src='../../images/settings.png' onClick={this.openFilter.bind(this)}/>
@@ -588,18 +566,14 @@ export default class IncomeStatement extends React.Component {
           </Grid.Column>
           <Grid.Column width={5}>
             <div style={{width:'10px',height:'10px',background:'#2980B9'}} />
-            <p style={{fontSize:'13px'}}>NP -Net Income</p>
+            <p style={{fontSize:'13px'}}>NS -Net Sales</p>
           </Grid.Column>
-          <Grid.Column width={4}>
-            <div style={{width:'10px',height:'10px',background:'#0d5c91'}} />
-            <p style={{fontSize:'13px'}}>NP -Margin</p>
-          </Grid.Column>
-          <Grid.Column width={1} />
+          <Grid.Column width={5} />
         </Grid.Row>
       </Grid>
       )
     }
-    else if(this.props.match.params.value == 'Accounts Payable Turnover' || this.props.match.params.value == 'Accounts Receivable Turnover'){
+    else if(this.props.match.params.value == 'Accounts Payable Turnover'){
       display = (
       <Grid>
         <Grid.Row style={{marginTop:'70px',color:'black'}}>
@@ -619,6 +593,16 @@ export default class IncomeStatement extends React.Component {
           </Grid.Column>
           <Grid.Column width={1}/>
         </Grid.Row>
+      </Grid>
+    )
+  } else if (this.props.match.params.value == 'Accounts Receivable Turnover') {
+    display = (
+      <Grid>
+        <Grid.Row style={{marginTop:'70px',color:'black'}}>
+          <Grid.Column width={16}>
+            <h2 style={{marginLeft:'15px', textAlign:'center'}}>Working Capital</h2>
+          </Grid.Column>
+        </Grid.Row>
         <Grid.Row style={{background:'rgb(255,255,255,0.4)',color:'#1A237E',marginTop:'15px'}}>
           <Grid.Column width={16}>
             <center><h3>Accounts Receivable</h3></center>
@@ -627,13 +611,13 @@ export default class IncomeStatement extends React.Component {
         <Grid.Row style={{background:'rgb(255,255,255,0.4)',marginTop:'15px'}}>
           <Grid.Column width={1} />
           <Grid.Column width={14}>
-            <Bar data={data2} options={options2} accessorKey="v" />
+            <Bar data={data1} options={options2} accessorKey="v" />
           </Grid.Column>
           <Grid.Column width={1}/>
         </Grid.Row>
       </Grid>
-    )
-    }
+    );
+  }
     else {
       display = (
         <Grid style={{marginTop:'65px'}}>
@@ -663,21 +647,14 @@ export default class IncomeStatement extends React.Component {
                   <Grid.Row>
                     <Grid.Column width={3}/>
                     <Grid.Column width={10}>
-                      <Dropdown className='drop1' placeholder="Select a Location" fluid selection options={countryOptions} onChange={this.handleLocation.bind(this)} style={{background:'rgba(17, 216, 213,1)'}}/>
+                      <Dropdown placeholder="Select a Location" fluid selection options={countryOptions} onChange={this.handleLocation.bind(this)} style={{background:'lightgrey'}}/>
                     </Grid.Column>
                     <Grid.Column width={3}/>
                   </Grid.Row>
                   <Grid.Row>
                     <Grid.Column width={3}/>
                     <Grid.Column width={10}>
-                      <Dropdown className='drop1' placeholder="Select a Category" fluid selection options={categoryOptions} onChange={this.handleCategory.bind(this)} style={{background:'rgba(17, 216, 213,1)'}}/>
-                    </Grid.Column>
-                    <Grid.Column width={3}/>
-                  </Grid.Row>
-                  <Grid.Row>
-                    <Grid.Column width={3}/>
-                    <Grid.Column width={10}>
-                      <Dropdown className='drop1' placeholder="Select a Product" fluid selection options={productOptions} onChange={this.handleProduct.bind(this)} style={{background:'rgba(17, 216, 213,1)'}}/>
+                      <Dropdown placeholder="Select a Category" fluid selection options={categoryOptions} onChange={this.handleCategory.bind(this)} style={{background:'lightgrey'}}/>
                     </Grid.Column>
                     <Grid.Column width={3}/>
                   </Grid.Row>

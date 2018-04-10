@@ -4,6 +4,7 @@ import {HashRouter, Route, Link} from 'react-router-dom';
 import HeaderComponent from '../components/headerComponent.jsx';
 //import {Pie} from 'react-chartjs-2';
 import {Pie} from 'react-pathjs-chart';
+import {HorizontalBar} from 'react-chartjs-2';
 
 class cfoDashboard extends React.Component {
   constructor(){
@@ -112,6 +113,34 @@ const data = [
             }
         };
 
+    const accPay_data = {
+      labels: ['0 - 30', '31 - 60', '61 - 90'],
+      datasets: [
+        {
+          display: false,
+          backgroundColor: '#1A237E',
+          data: [365, 449, 415]
+        },
+      ]
+    };
+    const addPay_legend = {
+      "display": false
+    };
+
+    const accRec_data = {
+      labels: ['0 - 30', '31 - 60', '61 - 90'],
+      datasets: [
+        {
+          backgroundColor: '#1A237E',
+          data: [458, 335, 138]
+        }
+      ]
+    };
+
+    const addRec_legend = {
+      "display": false
+    };
+
     return(
       <div style={{overflow:'hidden',marginTop:'16.5%'}}>
         <HeaderComponent content='CFO Report' linkto='/'/>
@@ -122,12 +151,14 @@ const data = [
                  <Card raised style={{height: '250px'}}>
                    <Card.Content>
                      <Card.Header>
-                       <span style={{color:'#1A237E', fontSize:'16.8px', textAlign: 'center'}}> Revenue vs Target </span>
+                       <center>
+                         <span style={{color:'#1A237E', fontSize:'16.8px', textAlign: 'center'}}> Revenue vs Target </span>
+                       </center>
                      </Card.Header>
                      <Divider />
                      <center>
                        <Statistic size='tiny'>
-                        <Statistic.Value>Kr 5,550</Statistic.Value>
+                        <Statistic.Value>€ 5,550</Statistic.Value>
                         <Statistic.Label style={{fontColor: '#1A237E', fontStyle: 'italic'}}>YTD</Statistic.Label>
                       </Statistic>
                       <Divider />
@@ -142,26 +173,109 @@ const data = [
                  </Card>
                </Grid.Column>
                <Grid.Column width={7}>
+                 <Link to='/incomeStatement/Net%20Profit%20Margin'>
+                   <Card raised style={{height: '250px'}}>
+                     <Card.Content>
+                       <Card.Header>
+                         <center>
+                           <span style={{color:'#1A237E', fontSize:'16.8px', textAlign: 'center'}}> Net Profit Margin </span>
+                         </center>
+                       </Card.Header>
+                       <Divider />
+                       <center>
+                         <Statistic size='tiny'>
+                          <Statistic.Value>4%</Statistic.Value>
+                          <Statistic.Label style={{fontColor: '#1A237E', fontStyle: 'italic'}}>2017</Statistic.Label>
+                        </Statistic>
+                        <Divider />
+                       </center>
+                       <Card raised style={{height:'70px'}}>
+                        <Card.Content>
+                          <center>
+                            <Statistic size='tiny'>
+                              <Statistic.Value>
+                                <Image src='./../images/chevron-down.png' style={{marginRight:'4px'}}/>
+                                17%
+                              </Statistic.Value>
+                              <Statistic.Label style={{fontColor: '#1A237E', fontStyle: 'italic'}}>2016</Statistic.Label>
+                            </Statistic>
+                          </center>
+                        </Card.Content>
+                       </Card>
+                        <br />
+                     </Card.Content>
+                   </Card>
+                 </Link>
+               </Grid.Column>
+               <Grid.Column width={1} />
+             </Grid.Row>
+             <Grid.Row style={{height:'300px'}}>
+               <Grid.Column width={1} />
+               <Grid.Column width={7} >
+                 <Link to='/incomeStatement/Accounts%20Payable%20Turnover'>
+                   <Card raised style={{height: '250px'}}>
+                     <Card.Content>
+                       <Card.Header>
+                         <center>
+                           <span style={{color:'#1A237E', fontSize:'16.8px', textAlign: 'center'}}> Accounts Payable </span>
+                         </center>
+                       </Card.Header>
+                       <Divider />
+                       <center>
+                         <HorizontalBar data={accPay_data} legend={addPay_legend} width={100} height={120} />
+                       </center>
+                       <br />
+                     </Card.Content>
+                   </Card>
+                 </Link>
+               </Grid.Column>
+               <Grid.Column width={7}>
+                 <Link to='/incomeStatement/Accounts%20Receivable%20Turnover'>
+                   <Card raised style={{height: '250px'}}>
+                     <Card.Content>
+                       <Card.Header>
+                         <center>
+                           <span style={{color:'#1A237E', fontSize:'16.8px', textAlign: 'center'}}> Acc Receivable </span>
+                         </center>
+                       </Card.Header>
+                       <Divider />
+                       <center>
+                         <HorizontalBar data={accRec_data} legend={addRec_legend} width={100} height={120} />
+                       </center>
+                       <br />
+                     </Card.Content>
+                   </Card>
+                 </Link>
+               </Grid.Column>
+               <Grid.Column width={1} />
+             </Grid.Row>
+             <Grid.Row style={{height:'300px'}}>
+               <Grid.Column width={1} />
+               <Grid.Column width={7} >
                  <Card raised style={{height: '250px'}}>
                    <Card.Content>
+                     <center></center>
                      <Card.Header>
-                       <span style={{color:'#1A237E', fontSize:'16.8px', textAlign: 'center'}}> Net Profit Margin </span>
+                       <center>
+                         <span style={{color:'#1A237E', fontSize:'16.8px', textAlign: 'center'}}> Current Ratio </span>
+                       </center>
                      </Card.Header>
                      <Divider />
+                     <br />
                      <center>
                        <Statistic size='tiny'>
-                        <Statistic.Value>22%</Statistic.Value>
+                        <Statistic.Value>1.21</Statistic.Value>
                         <Statistic.Label style={{fontColor: '#1A237E', fontStyle: 'italic'}}>2017</Statistic.Label>
                       </Statistic>
                       <Divider />
                      </center>
-                     <Card raised style={{height:'80px'}}>
+                     <Card raised style={{height:'65px'}}>
                       <Card.Content>
                         <center>
                           <Statistic size='tiny'>
                             <Statistic.Value>
                               <Image src='./../images/chevron-up.png' style={{marginRight:'4px'}}/>
-                              2%
+                              8%
                             </Statistic.Value>
                             <Statistic.Label style={{fontColor: '#1A237E', fontStyle: 'italic'}}>2016</Statistic.Label>
                           </Statistic>
@@ -172,54 +286,29 @@ const data = [
                    </Card.Content>
                  </Card>
                </Grid.Column>
-               <Grid.Column width={1} />
-             </Grid.Row>
-             <Grid.Row style={{height:'300px'}}>
-               <Grid.Column width={1} />
-               <Grid.Column width={7} >
-                 <Card raised style={{height: '250px'}}>
-                   <Card.Content>
-                     <Card.Header>
-                       <span style={{color:'#1A237E', fontSize:'16.8px', textAlign: 'center'}}> Accounts Payable </span>
-                     </Card.Header>
-                     <Divider />
-                     <center>
-                       <Statistic size='tiny'>
-                        <Statistic.Value>Kr 5,550</Statistic.Value>
-                        <Statistic.Label style={{fontColor: '#1A237E', fontStyle: 'italic'}}>YTD</Statistic.Label>
-                      </Statistic>
-                      <Divider />
-                     </center>
-                     <Progress value='75' total='100' progress='percent' color='green'>
-                       <Label basic pointing color="black">
-                         <span style={{fontColor: '#1A237E', fontSize:'16px'}}>Achieved</span>
-                       </Label>
-                      </Progress>
-                      <br />
-                   </Card.Content>
-                 </Card>
-               </Grid.Column>
                <Grid.Column width={7}>
                  <Card raised style={{height: '250px'}}>
                    <Card.Content>
                      <Card.Header>
-                       <span style={{color:'#1A237E', fontSize:'16.8px', textAlign: 'center'}}> Acc Receivable </span>
+                       <center>
+                         <span style={{color:'#1A237E', fontSize:'16.8px', textAlign: 'center'}}> Net Promoter Score </span>
+                       </center>
                      </Card.Header>
                      <Divider />
                      <center>
                        <Statistic size='tiny'>
-                        <Statistic.Value>22%</Statistic.Value>
+                        <Statistic.Value>4</Statistic.Value>
                         <Statistic.Label style={{fontColor: '#1A237E', fontStyle: 'italic'}}>2017</Statistic.Label>
                       </Statistic>
                       <Divider />
                      </center>
-                     <Card raised style={{height:'80px'}}>
+                     <Card raised style={{height:'65px'}}>
                       <Card.Content>
                         <center>
                           <Statistic size='tiny'>
                             <Statistic.Value>
                               <Image src='./../images/chevron-up.png' style={{marginRight:'4px'}}/>
-                              2%
+                              20%
                             </Statistic.Value>
                             <Statistic.Label style={{fontColor: '#1A237E', fontStyle: 'italic'}}>2016</Statistic.Label>
                           </Statistic>

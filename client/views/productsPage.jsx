@@ -84,21 +84,21 @@ class ProductsPage extends React.Component {
   componentDidMount()
  {
    var context = this;
- //  request.get('http://localhost:3030/scrape')
- //   .end(function(err, res){
- //     if (err || !res.ok) {
- //           alert('Oh no! error');
- //           console.log('err from scrope route - > ', err);
- //         } else {
- //           var tempArray = [];
- //           tempArray = res.body.map((item,key)=>{
- //             item.checked = false;
- //              item.approved = false;
- //              return item
- //           })
- //           context.setState({productsArray:tempArray});
- //      }
- // })
+  request.get('http://localhost:3030/scrape')
+   .end(function(err, res){
+     if (err || !res.ok) {
+           alert('Oh no! error');
+           console.log('err from scrope route - > ', err);
+         } else {
+           var tempArray = [];
+           tempArray = res.body.map((item,key)=>{
+             item.checked = false;
+              item.approved = false;
+              return item
+           })
+           context.setState({productsArray:tempArray});
+      }
+ })
 }
   openModal(i){
     this.setState({modalco:this.state.productsArray[i],open:true});
