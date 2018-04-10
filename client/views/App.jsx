@@ -4,7 +4,7 @@ import {HashRouter, Route, Link} from 'react-router-dom';
 class App extends React.Component {
    render() {
       return (
-        <div style={{height: '100vh',overflow:'hidden',overflowX:'hidden'}}>
+        <div style={{height: '100vh',overflow:'hidden',overflowX:'hidden', overflowY:'hidden'}}>
            <Grid>
              <Grid.Row style={{marginTop:'15%',background:'rgba(26, 35, 126,0.6)',paddingLeft:'5%'}}>
                <Grid.Column>

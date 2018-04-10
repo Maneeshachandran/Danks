@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid,Table,Divider,Segment,Image} from 'semantic-ui-react';
+import { Grid,Table,Divider,Segment,Image,Card,Statistic,Progress,Label } from 'semantic-ui-react';
 import {HashRouter, Route, Link} from 'react-router-dom';
 import HeaderComponent from '../components/headerComponent.jsx';
 //import {Pie} from 'react-chartjs-2';
@@ -116,89 +116,123 @@ const data = [
       <div style={{overflow:'hidden',marginTop:'16.5%'}}>
         <HeaderComponent content='CFO Report' linkto='/'/>
           <Grid>
-             <Grid.Row >
+             <Grid.Row style={{height:'300px'}}>
                <Grid.Column width={1} />
+               <Grid.Column width={7} >
+                 <Card raised style={{height: '250px'}}>
+                   <Card.Content>
+                     <Card.Header>
+                       <span style={{color:'#1A237E', fontSize:'16.8px', textAlign: 'center'}}> Revenue vs Target </span>
+                     </Card.Header>
+                     <Divider />
+                     <center>
+                       <Statistic size='tiny'>
+                        <Statistic.Value>Kr 5,550</Statistic.Value>
+                        <Statistic.Label style={{fontColor: '#1A237E', fontStyle: 'italic'}}>YTD</Statistic.Label>
+                      </Statistic>
+                      <Divider />
+                     </center>
+                     <Progress value='75' total='100' progress='percent' color='green'>
+                       <Label basic pointing color="black">
+                         <span style={{fontColor: '#1A237E', fontSize:'16px'}}>Achieved</span>
+                       </Label>
+                      </Progress>
+                      <br />
+                   </Card.Content>
+                 </Card>
+               </Grid.Column>
                <Grid.Column width={7}>
-                 <h3 style={{color:'black',marginTop:'45px',fontSize:'19px'}}>Annual Revenue</h3>
+                 <Card raised style={{height: '250px'}}>
+                   <Card.Content>
+                     <Card.Header>
+                       <span style={{color:'#1A237E', fontSize:'16.8px', textAlign: 'center'}}> Net Profit Margin </span>
+                     </Card.Header>
+                     <Divider />
+                     <center>
+                       <Statistic size='tiny'>
+                        <Statistic.Value>22%</Statistic.Value>
+                        <Statistic.Label style={{fontColor: '#1A237E', fontStyle: 'italic'}}>2017</Statistic.Label>
+                      </Statistic>
+                      <Divider />
+                     </center>
+                     <Card raised style={{height:'80px'}}>
+                      <Card.Content>
+                        <center>
+                          <Statistic size='tiny'>
+                            <Statistic.Value>
+                              <Image src='./../images/chevron-up.png' style={{marginRight:'4px'}}/>
+                              2%
+                            </Statistic.Value>
+                            <Statistic.Label style={{fontColor: '#1A237E', fontStyle: 'italic'}}>2016</Statistic.Label>
+                          </Statistic>
+                        </center>
+                      </Card.Content>
+                     </Card>
+                      <br />
+                   </Card.Content>
+                 </Card>
                </Grid.Column>
-               <Grid.Column width={7} style={{marginLeft:'5.2%'}}>
-                 <Pie data={data} options={options} accessorKey="population"
-                  pallete={
-                    [
-                      { 'r': 24, 'g': 175, 'b': 35 },
-                      { 'r': 219, 'g': 40, 'b': 40 },
-
-                    ]
-                  }
-
-
-                />
+               <Grid.Column width={1} />
+             </Grid.Row>
+             <Grid.Row style={{height:'300px'}}>
+               <Grid.Column width={1} />
+               <Grid.Column width={7} >
+                 <Card raised style={{height: '250px'}}>
+                   <Card.Content>
+                     <Card.Header>
+                       <span style={{color:'#1A237E', fontSize:'16.8px', textAlign: 'center'}}> Accounts Payable </span>
+                     </Card.Header>
+                     <Divider />
+                     <center>
+                       <Statistic size='tiny'>
+                        <Statistic.Value>Kr 5,550</Statistic.Value>
+                        <Statistic.Label style={{fontColor: '#1A237E', fontStyle: 'italic'}}>YTD</Statistic.Label>
+                      </Statistic>
+                      <Divider />
+                     </center>
+                     <Progress value='75' total='100' progress='percent' color='green'>
+                       <Label basic pointing color="black">
+                         <span style={{fontColor: '#1A237E', fontSize:'16px'}}>Achieved</span>
+                       </Label>
+                      </Progress>
+                      <br />
+                   </Card.Content>
+                 </Card>
+               </Grid.Column>
+               <Grid.Column width={7}>
+                 <Card raised style={{height: '250px'}}>
+                   <Card.Content>
+                     <Card.Header>
+                       <span style={{color:'#1A237E', fontSize:'16.8px', textAlign: 'center'}}> Acc Receivable </span>
+                     </Card.Header>
+                     <Divider />
+                     <center>
+                       <Statistic size='tiny'>
+                        <Statistic.Value>22%</Statistic.Value>
+                        <Statistic.Label style={{fontColor: '#1A237E', fontStyle: 'italic'}}>2017</Statistic.Label>
+                      </Statistic>
+                      <Divider />
+                     </center>
+                     <Card raised style={{height:'80px'}}>
+                      <Card.Content>
+                        <center>
+                          <Statistic size='tiny'>
+                            <Statistic.Value>
+                              <Image src='./../images/chevron-up.png' style={{marginRight:'4px'}}/>
+                              2%
+                            </Statistic.Value>
+                            <Statistic.Label style={{fontColor: '#1A237E', fontStyle: 'italic'}}>2016</Statistic.Label>
+                          </Statistic>
+                        </center>
+                      </Card.Content>
+                     </Card>
+                      <br />
+                   </Card.Content>
+                 </Card>
                </Grid.Column>
                <Grid.Column width={1} />
              </Grid.Row>
            </Grid>
-           <Grid>
-             <Grid.Row>
-               <Grid.Column width={1} />
-               <Grid.Column width={14}>
-                 <Grid style={{background:'rgb(255,255,255,0.5)',marginBottom:'15px'}}>
-                   <Grid.Row style={{marginTop:'-2%',color:'#1A237E'}}>
-                     <Grid.Column width={8}>
-                        <h4><strong>KPI</strong></h4>
-                     </Grid.Column>
-                     <Grid.Column width={3}>
-                        <h4><strong>Value</strong></h4>
-                      </Grid.Column>
-                      <Grid.Column width={5} style={{paddingLeft:'-5px'}}>
-                        <h4><strong>% Change</strong></h4>
-                     </Grid.Column>
-                   </Grid.Row>
-                 </Grid>
-               </Grid.Column>
-               <Grid.Column width={1} />
-             </Grid.Row>
-           </Grid>
-           <Grid>
-             <Grid.Row>
-               <Grid.Column width={1} />
-               <Grid.Column width={14}>
-
-                 {
-                   this.state.data.map((item,key)=>{
-                      return(
-                         <Grid style={{marginTop:'-30px'}}>
-                        <Grid.Row style={{background:'rgb(255,255,255,0.4)',color:'black'}} as={Link} to={`/incomeStatement/${item.kpi}`}>
-                           <Grid.Column width={8}>
-                            {item.kpi}
-                          </Grid.Column>
-                          <Grid.Column width={3} style={{textAlign:'center'}}>
-                              {item.value}
-                          </Grid.Column>
-                          <Grid.Column width={2} style={{textAlign:'center'}}>
-                           {item.arrow ?
-                               <Image style={{marginTop:'3px',marginLeft:'20px'}} src='../../images/chevron-up.png'/>
-                              :
-                              <Image style={{marginTop:'3px',marginLeft:'20px'}} src='../../images/chevron-down.png'/>
-                           }
-                          </Grid.Column>
-                          <Grid.Column width={3} style={{paddingRight:'5%'}}>
-                               {item.margin}
-                          </Grid.Column>
-                        </Grid.Row>
-                        <Grid.Row>
-                         <Grid.Column>
-                           <Divider style={{marginTop:'-4%',background:'black',borderBottomWidth:'0px'}} />
-                         </Grid.Column>
-                       </Grid.Row>
-                        </Grid>
-                  )
-                  })
-                 }
-
-               </Grid.Column>
-               <Grid.Column width={1} />
-             </Grid.Row>
-          </Grid>
       </div>
     );
   }
