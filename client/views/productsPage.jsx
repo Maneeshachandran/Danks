@@ -81,15 +81,15 @@ class ProductsPage extends React.Component {
     this.viewProducts = this.viewProducts.bind(this);
     this.approve = this.approve.bind(this);
   }
-  componentDidMount()
- {
-   var context = this;
-  request.get('http://localhost:3030/scrape')
-   .end(function(err, res){
-     if (err || !res.ok) {
+  componentDidMount() {
+     var context = this;
+    request.get('http://localhost:3030/scrape')
+     .end(function(err, res){
+       if (err || !res.ok) {
            alert('Oh no! error');
            console.log('err from scrope route - > ', err);
          } else {
+           console.log('inside else');
            var tempArray = [];
            tempArray = res.body.map((item,key)=>{
              item.checked = false;
@@ -98,8 +98,8 @@ class ProductsPage extends React.Component {
            })
            context.setState({productsArray:tempArray});
       }
- })
-}
+   });
+  }
   openModal(i){
     this.setState({modalco:this.state.productsArray[i],open:true});
   }
