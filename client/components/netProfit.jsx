@@ -21,7 +21,7 @@ export default class NetProfit extends Component {
     var header=[];
     var content=[];
     var chartHeader=[];
-    request.post('http://localhost:3030/getData').end(function(err, res) {
+    request.post('/getData').end(function(err, res) {
       if (err || !res.ok) {
         alert('Oh no! error');
       } else {
