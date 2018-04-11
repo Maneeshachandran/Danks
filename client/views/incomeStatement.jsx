@@ -48,6 +48,28 @@ export default class IncomeStatement extends React.Component {
           }
         ]
       },
+      netProfitMarginOptions : {
+        scales : {
+          xAxes: [
+            {
+              scaleLabel: {
+                display: true,
+                labelString: '2017'
+              }
+            }
+          ],
+          yAxes: [
+            {
+              scaleLabel: {
+                display: true,
+                labelString: 'DKK'
+              },
+              fontSize: '18px',
+              fontColor: '#1A237E'
+            }
+          ]
+        }
+      },
       payRecData : {
         labels: ['Q1', 'Q2', 'Q3', 'Q4'],
         datasets: [
@@ -77,7 +99,7 @@ export default class IncomeStatement extends React.Component {
             {
               scaleLabel: {
                 display: true,
-                labelString: 'Kr'
+                labelString: 'DKK'
               },
               fontSize: '18px',
               fontColor: '#1A237E'
@@ -151,7 +173,7 @@ export default class IncomeStatement extends React.Component {
         <Grid.Row style={{marginTop:'7px',background:'rgb(255,255,255,0.4)'}}>
           <Grid.Column width={1} />
             <Grid.Column width={14} >
-              <Bar data={this.state.netProfitMarginData} height={300} options={{scales: {yAxes: [{ticks: {beginAtZero:true}}]}}} />
+              <Bar data={this.state.netProfitMarginData} height={300} options={this.state.netProfitMarginOptions} />
             </Grid.Column>
           <Grid.Column width={1} />
         </Grid.Row>
