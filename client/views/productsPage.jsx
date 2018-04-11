@@ -248,14 +248,10 @@ class ProductsPage extends React.Component {
 
               <Grid.Column width={16} >
                 <Segment style={{position:'fixed',bottom:'0px',width:'100%'}}>
-                 {/* <Button.Group attached='bottom' style={{position:'fixed',zIndex:100,bottom:'0'}}> */}
-                <Button style={{background:'#1A237E',color:'white',width:'47%'}} onClick={this.viewProducts}>View Products</Button>
-                <Button color='white'   style={{color:'#1A237E',width:'47%',marginLeft:'3.8%'}} onClick={this.approve}>Approve</Button>
-              {/* </Button.Group> */}
-              </Segment>
+                  <Button style={{background:'#1A237E',color:'white',width:'47%'}} onClick={this.viewProducts}>View Products</Button>
+                  <Button style={{color:'#1A237E',width:'47%',marginLeft:'3.8%'}} onClick={this.approve}>Approve</Button>
+                </Segment>
               </Grid.Column>
-
-
             </Grid.Row>
           </Grid>
           <Grid>

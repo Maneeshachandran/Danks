@@ -2,17 +2,20 @@ import React from 'react';
 import { Grid,Header,Card,Image,Segment,Icon,Dropdown,Button } from 'semantic-ui-react';
 import HeaderComponent from '../components/headerComponent.jsx';
 import {HashRouter, Route, Link} from 'react-router-dom';
-const countryOptions = [ { key: 'Sollentuna', value: 'Sollentuna', text: 'Sollentuna' },
-                          { key: 'Hägersten', value: 'Hägersten', text: 'Hägersten' },
-                          { key: 'Skärholmen', value: 'Skärholmen', text: 'Skärholmen' }
-                       ]
-const productsOptions = [ { key: 'Vegetables', value: 'Vegetables', text: 'Vegetables' },
-                         { key: 'Fruits', value: 'Fruits', text: 'Fruits' },
-                         { key: 'Oil', value: 'Oil', text: 'Oil' }
-                       ]
+const countryOptions = [ { key: 'Götaland', value: 'Götaland', text: 'Götaland' },
+                          { key: 'Svealand', value: 'Svealand', text: 'Svealand' },
+                          { key: 'Österland', value: 'Österland', text: 'Österland' },
+                          { key: 'Norrland', value: 'Norrland', text: 'Norrland' }
 
-class MainPage extends React.Component {
+                       ];
+const productOptions = [
+                        { key: 'Vegetables', value: 'Vegetables', text: 'Vegetables' },
+                        { key: 'Fruits', value: 'Fruits', text: 'Fruits' },
+                        { key: 'Oil', value: 'Oil', text: 'Oil' },
+                        { key: 'Packed Items', value: 'Packed Items', text: 'Packed Items' }
+                      ];
 
+export default class MainPage extends React.Component {
    render() {
       return (
         <div style={{height: '100%', overflow:'hidden', overflowX:'hidden'}}>
@@ -59,4 +62,3 @@ class MainPage extends React.Component {
       );
    }
 }
-export default MainPage;

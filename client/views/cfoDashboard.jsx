@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid,Table,Divider,Segment,Image,Card,Statistic,Progress,Label } from 'semantic-ui-react';
+import { Grid,Table,Divider,Segment,Image,Card,Statistic,Progress,Label,Button,Icon } from 'semantic-ui-react';
 import {HashRouter, Route, Link} from 'react-router-dom';
 import HeaderComponent from '../components/headerComponent.jsx';
 //import {Pie} from 'react-chartjs-2';
@@ -57,64 +57,8 @@ class cfoDashboard extends React.Component {
   }
 
   render(){
-//     const data = {
-// 	labels: [
-// 		'Red',
-// 		'Green'
-// 	],
-// 	datasets: [{
-// 		data: [650000,150000],
-// 		backgroundColor: [
-// 		'#FF6384',
-// 		'#36A2EB'
-// 		],
-// 		hoverBackgroundColor: [
-// 		'#FF6384',
-// 		'#36A2EB'
-// 		]
-// 	}]
-// };
-
-const data = [
-  {
-    "name": "750K",
-    "population": 7500000
-  },
-  {
-    "name": "250K",
-    "population": 2000000
-  }
-]
-
-
-  const options= {
-            margin: {
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0
-            },
-            width: 100,
-            height: 100,
-            color: '#2980B9',
-            r: 15,
-            R: 45,
-            legendPosition: 'topLeft',
-            animate:{
-                type:'oneByOne',
-                duration:200,
-                fillTransition:3
-            },
-            label:{
-                fontFamily:'Arial',
-                fontSize:16,
-                fontWeight:true,
-                color:'#ECF0F1'
-            }
-        };
-
     const accPay_data = {
-      labels: ['0 - 30', '31 - 60', '61 - 90'],
+      labels: ['30', '60', '90'],
       datasets: [
         {
           backgroundColor: '#1A237E',
@@ -129,22 +73,29 @@ const data = [
       scales : {
         xAxes : [
           {
-            xLabel: 'Days',
+            scaleLabel: {
+              display: true,
+              labelString: 'Kr'
+            },
             fontSize: '18px',
             fontColor: '#1A237E'
           }
         ],
         yAxes : [
           {
+            scaleLabel: {
+              display: true,
+              labelString: 'Days'
+            },
             fontSize: '18px',
             fontColor: '#1A237E'
           }
         ]
       }
-    }
+    };
 
     const accRec_data = {
-      labels: ['0 - 30', '31 - 60', '61 - 90'],
+      labels: ['30', '60', '90'],
       datasets: [
         {
           backgroundColor: '#1A237E',
@@ -164,7 +115,7 @@ const data = [
              <Grid.Row style={{height:'300px'}}>
                <Grid.Column width={1} />
                <Grid.Column width={7} >
-                 <Card raised style={{height: '250px'}}>
+                 <Card raised style={{height: '95%'}}>
                    <Card.Content>
                      <Card.Header>
                        <center>
@@ -189,13 +140,14 @@ const data = [
                  </Card>
                </Grid.Column>
                <Grid.Column width={7}>
-                 <Link to='/incomeStatement/Net%20Profit%20Margin'>
-                   <Card raised style={{height: '250px'}}>
+                   <Card raised style={{height: '95%'}}>
                      <Card.Content>
                        <Card.Header>
+                         <Link to='/incomeStatement/Net%20Profit%20Margin'>
                          <center>
                            <span style={{color:'#1A237E', fontSize:'16.8px', textAlign: 'center'}}> Net Profit Margin </span>
                          </center>
+                       </Link>
                        </Card.Header>
                        <Divider />
                        <center>
@@ -221,38 +173,38 @@ const data = [
                         <br />
                      </Card.Content>
                    </Card>
-                 </Link>
                </Grid.Column>
                <Grid.Column width={1} />
              </Grid.Row>
              <Grid.Row style={{height:'300px'}}>
                <Grid.Column width={1} />
                <Grid.Column width={7} >
-                 <Link to='/incomeStatement/Accounts%20Payable%20Turnover'>
-                   <Card raised style={{height: '250px'}}>
+                   <Card raised style={{height: '95%'}}>
                      <Card.Content>
                        <Card.Header>
+                         <Link to='/incomeStatement/Accounts%20Payable%20Turnover'>
                          <center>
                            <span style={{color:'#1A237E', fontSize:'16.8px', textAlign: 'center'}}> Accounts Payable </span>
                          </center>
+                       </Link>
                        </Card.Header>
                        <Divider />
                        <center>
                          <HorizontalBar data={accPay_data} legend={addPay_legend} options={addPay_options} width={100} height={120} />
                        </center>
-                       <br />
+
                      </Card.Content>
                    </Card>
-                 </Link>
                </Grid.Column>
                <Grid.Column width={7}>
-                 <Link to='/incomeStatement/Accounts%20Receivable%20Turnover'>
-                   <Card raised style={{height: '250px'}}>
+                   <Card raised style={{height: '95%'}}>
                      <Card.Content>
                        <Card.Header>
+                         <Link to='/incomeStatement/Accounts%20Receivable%20Turnover'>
                          <center>
                            <span style={{color:'#1A237E', fontSize:'16.8px', textAlign: 'center'}}> Accounts Receivable </span>
                          </center>
+                       </Link>
                        </Card.Header>
                        <Divider />
                        <center>
@@ -261,14 +213,13 @@ const data = [
                        <br />
                      </Card.Content>
                    </Card>
-                 </Link>
                </Grid.Column>
                <Grid.Column width={1} />
              </Grid.Row>
              <Grid.Row style={{height:'300px'}}>
                <Grid.Column width={1} />
                <Grid.Column width={7} >
-                 <Card raised style={{height: '250px'}}>
+                 <Card raised style={{height: '95%'}}>
                    <Card.Content>
                      <center></center>
                      <Card.Header>
@@ -303,7 +254,7 @@ const data = [
                  </Card>
                </Grid.Column>
                <Grid.Column width={7}>
-                 <Card raised style={{height: '250px'}}>
+                 <Card raised style={{height: '95%'}}>
                    <Card.Content>
                      <Card.Header>
                        <center>
@@ -338,6 +289,7 @@ const data = [
                <Grid.Column width={1} />
              </Grid.Row>
            </Grid>
+           <br />
       </div>
     );
   }
