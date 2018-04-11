@@ -45,7 +45,7 @@ export default class MainPage extends React.Component {
           <Grid.Row>
             <Grid.Column width={3}/>
             <Grid.Column width={10}>
-              <Dropdown placeholder="Select a Product" fluid selection options={productsOptions} style={{background:'lightgrey',marginBottom:'5%'}}/>
+              <Dropdown placeholder="Select a Product" fluid selection options={productOptions} style={{background:'lightgrey',marginBottom:'5%'}}/>
             </Grid.Column>
             <Grid.Column width={3}/>
           </Grid.Row>
