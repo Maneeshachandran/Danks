@@ -58,11 +58,11 @@ class cfoDashboard extends React.Component {
 
   render(){
     const accPay_data = {
-      labels: ['30', '60', '90'],
+      labels: ['90', '60', '30'],
       datasets: [
         {
           backgroundColor: '#1A237E',
-          data: [365, 449, 415]
+          data: [415, 449, 365]
         },
       ]
     };
@@ -95,11 +95,11 @@ class cfoDashboard extends React.Component {
     };
 
     const accRec_data = {
-      labels: ['30', '60', '90'],
+      labels: ['90', '60', '30'],
       datasets: [
         {
           backgroundColor: '#1A237E',
-          data: [458, 335, 138]
+          data: [138, 335, 458]
         }
       ]
     };
@@ -125,7 +125,7 @@ class cfoDashboard extends React.Component {
                      <Divider />
                      <center>
                        <Statistic size='tiny'>
-                        <Statistic.Value>kr 57,899</Statistic.Value>
+                        <Statistic.Value>57,899 <span style={{fontSize:'18px', textAlign: 'center'}}>MDKK</span> </Statistic.Value>
                         <Statistic.Label style={{fontColor: '#1A237E', fontStyle: 'italic'}}>YTD</Statistic.Label>
                       </Statistic>
                       <Divider />
@@ -157,7 +157,12 @@ class cfoDashboard extends React.Component {
                         </Statistic>
                         <Divider />
                        </center>
-                       <Card raised style={{height:'70px'}}>
+                       <Card raised style={{height:'88px'}}>
+                        <Card.Header>
+                          <center>
+                            <span style={{color:'#1A237E', fontSize:'14px', textAlign: 'center'}}> Variance </span>
+                          </center>
+                        </Card.Header>
                         <Card.Content>
                           <center>
                             <Statistic size='tiny'>
@@ -236,7 +241,12 @@ class cfoDashboard extends React.Component {
                       </Statistic>
                       <Divider />
                      </center>
-                     <Card raised style={{height:'65px'}}>
+                     <Card raised style={{height:'88px'}}>
+                      <Card.Header>
+                        <center>
+                          <span style={{color:'#1A237E', fontSize:'14px', textAlign: 'center'}}> Variance </span>
+                        </center>
+                      </Card.Header>
                       <Card.Content>
                         <center>
                           <Statistic size='tiny'>
@@ -269,7 +279,12 @@ class cfoDashboard extends React.Component {
                       </Statistic>
                       <Divider />
                      </center>
-                     <Card raised style={{height:'65px'}}>
+                     <Card raised style={{height:'88px'}}>
+                      <Card.Header>
+                        <center>
+                          <span style={{color:'#1A237E', fontSize:'14px', textAlign: 'center'}}> Variance </span>
+                        </center>
+                      </Card.Header>
                       <Card.Content>
                         <center>
                           <Statistic size='tiny'>

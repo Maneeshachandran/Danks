@@ -4,25 +4,26 @@ import { Link } from 'react-router-dom';
 import HeaderComponent from '../components/headerComponent.jsx';
 import {Bar} from 'react-chartjs-2';
 
-const countryOptions = [ { key: 'Götaland', value: 'Götaland', text: 'Götaland' },
-                          { key: 'Svealand', value: 'Svealand', text: 'Svealand' },
-                          { key: 'Österland', value: 'Österland', text: 'Österland' },
-                          { key: 'Norrland', value: 'Norrland', text: 'Norrland' }
+const countryOptions = [
+                          { key: '1', value: 'Götaland', text: 'Götaland' },
+                          { key: '2', value: 'Svealand', text: 'Svealand' },
+                          { key: '3', value: 'Österland', text: 'Österland' },
+                          { key: '4', value: 'Norrland', text: 'Norrland' }
 
                        ];
 const categoryOptions = [
-                          { key: 'Organic', value:'Organic', text:'Organic' },
-                          { key: 'Fresh-Format', value:'Fresh-Format', text:'Fresh-Format' },
-                          { key: 'Supermarket', value:'Supermarket', text:'Supermarket' },
-                          { key: 'Limited Assortment', value:'Limited Assortment', text:'Limited Assortment' },
-                          { key: 'Independent Chains', value:'Independent Chains', text:'Independent Chains' }
+                          { key: '1', value:'Organic', text:'Organic' },
+                          { key: '2', value:'Fresh-Format', text:'Fresh-Format' },
+                          { key: '3', value:'Supermarket', text:'Supermarket' },
+                          { key: '4', value:'Limited Assortment', text:'Limited Assortment' },
+                          { key: '5', value:'Independent Chains', text:'Independent Chains' }
 
                         ];
 const productOptions = [
                          { key: 'Vegetables', value: 'Vegetables', text: 'Vegetables' },
                          { key: 'Fruits', value: 'Fruits', text: 'Fruits' },
-                         { key: 'Oil', value: 'Oil', text: 'Oil' },
-                         { key: 'Packed Items', value: 'Packed Items', text: 'Packed Items' }
+                         { key: 'Oil', value: 'Oil', text: 'Oil', disabled: true },
+                         { key: 'Packed Items', value: 'Packed Items', text: 'Packed Items', disabled: true }
                        ];
 
 export default class IncomeStatement extends React.Component {

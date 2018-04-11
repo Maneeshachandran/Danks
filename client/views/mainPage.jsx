@@ -2,17 +2,18 @@ import React from 'react';
 import { Grid,Header,Card,Image,Segment,Icon,Dropdown,Button } from 'semantic-ui-react';
 import HeaderComponent from '../components/headerComponent.jsx';
 import {HashRouter, Route, Link} from 'react-router-dom';
-const countryOptions = [ { key: 'Götaland', value: 'Götaland', text: 'Götaland' },
-                          { key: 'Svealand', value: 'Svealand', text: 'Svealand' },
-                          { key: 'Österland', value: 'Österland', text: 'Österland' },
-                          { key: 'Norrland', value: 'Norrland', text: 'Norrland' }
+const countryOptions = [
+                          { key: '1', value: 'Götaland', text: 'Götaland' },
+                          { key: '2', value: 'Svealand', text: 'Svealand' },
+                          { key: '3', value: 'Österland', text: 'Österland' },
+                          { key: '4', value: 'Norrland', text: 'Norrland' }
 
                        ];
 const productOptions = [
-                        { key: 'Vegetables', value: 'Vegetables', text: 'Vegetables' },
-                        { key: 'Fruits', value: 'Fruits', text: 'Fruits' },
-                        { key: 'Oil', value: 'Oil', text: 'Oil' },
-                        { key: 'Packed Items', value: 'Packed Items', text: 'Packed Items' }
+                        { key: '1', value: 'Fruits', text: 'Fruits' },
+                        { key: '2', value: 'Vegetables', text: 'Vegetables', disabled: true },
+                        { key: '3', value: 'Oil', text: 'Oil', disabled: true },
+                        { key: '4', value: 'Packed Items', text: 'Packed Items', disabled: true }
                       ];
 
 export default class MainPage extends React.Component {

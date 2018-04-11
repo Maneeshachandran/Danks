@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Header, Card, Image, Segment, Icon, Dropdown, Button, Checkbox, Modal, Dimmer, Loader } from 'semantic-ui-react';
+import { Grid, Header, Image, Segment, Button, Checkbox, Modal, Dimmer, Loader, Divider } from 'semantic-ui-react';
 import {HashRouter, Route, Link} from 'react-router-dom';
 import HeaderComponent from '../components/headerComponent.jsx';
 import request from 'superagent';
@@ -8,97 +8,34 @@ import request from 'superagent';
 class ProductsPage extends React.Component {
   constructor(){
     super();
-    this.state={
+    this.state = {
       modalco:{},
       selectedProducts:[],
       modalMsg:'',
       open:false,
       open1:false,
-      productsArray:[],
-      products:[{
-            'image':'http://www.pngall.com/wp-content/uploads/2016/05/Avocado-PNG-Clipart.png',
-            'name' :'Avocado',
-            'cp':'€10',
-            'np':'€8',
-            'percent':'25%',
-            'outDoor_price':'€5',
-            'føtex_erhverv_price':'€7',
-            'checked':false,
-            'approved':false
-          },{
-        'image':'http://pngimg.com/uploads/pomegranate/pomegranate_PNG8653.png',
-        'name' :'Pomegranate',
-        'cp':'€7',
-        'np':'€8',
-        'percent':'30%',
-        'outDoor_price':'€4' ,
-        'føtex_erhverv_price':'€4',
-        'checked':false,
-        'approved':false
-      },{
-        'image':'http://www.pngmart.com/files/1/Mango-PNG.png',
-        'name' :'Mango',
-        'cp':'€4',
-        'np':'€8',
-        'percent':'10%',
-        'outDoor_price':'€3',
-        'føtex_erhverv_price':'€5',
-        'checked':false,
-        'approved':false
-      },{
-        'image':'http://www.freepngimg.com/download/apple/16-red-apple-png-image.png',
-        'name' :'Apple',
-        'cp':'€5',
-        'np':'€8',
-        'percent':'5%',
-        'outDoor_price':'€5',
-        'føtex_erhverv_price':'€6',
-        'checked':false,
-        'approved':false
-      },{
-            'image':'http://www.pngall.com/wp-content/uploads/2016/04/Banana-Free-Download-PNG.png',
-            'name' :'Banana',
-            'cp':'€10',
-            'np':'€8',
-            'percent':'25%',
-            'outDoor_price':'€5',
-            'føtex_erhverv_price':'€7',
-            'checked':false,
-            'approved':false
-          // },{
-          //   'image':'https://imageresizer.static9.net.au/fIxyLYPgoCU50ODKB7ZZRV_JvUI=/1024x0/smart/http%3A%2F%2Fprod.static9.net.au%2F_%2Fmedia%2FImages%2FNL-Homes%2F2007%2F08%2F27%2F05%2F00%2FRLoranges.jpg'​​​​​​​​​​​​​,
-          //   'name' :'Orange',
-          //   'cp':'€5',
-          //   'np':'€8',
-          //   'percent':'5%',
-          //   'outDoor_price':'€5',
-          //   'føtex_erhverv_price':'€6',
-          //   'checked':false,
-          //   'approved':false
-          // }]
-        }]
+      productsArray:[]
     }
     this.viewProducts = this.viewProducts.bind(this);
     this.approve = this.approve.bind(this);
   }
   componentDidMount() {
-     var context = this;
-    request.get('/scrape')
-     .end(function(err, res){
-       if (err || !res.ok) {
-           alert('Oh no! error');
-           console.log('err from scrope route - > ', err);
-         } else {
-           console.log('inside else');
-           var tempArray = [];
-           tempArray = res.body.map((item,key)=>{
-             item.checked = false;
-              item.approved = false;
-              return item
-           })
-           context.setState({productsArray:tempArray});
-      }
-   });
+    request.get('http://localhost:3030/scrape')
+           .end((err, res) => {
+             if (err || !res.ok) {
+                 alert('Oh no! error');
+                 console.log('err from scrope route - > ', err);
+               } else {
+                 console.log('res - > ', res.body);
+                 var tempArray = [];
+                 tempArray = res.body.map((item,key)=>{
+                   item.checked = false;
+                    item.approved = false;
+                    return item;
+                 });
+                 this.setState({productsArray:tempArray});
+            }
+         });
   }
   openModal(i){
     this.setState({modalco:this.state.productsArray[i],open:true});
@@ -151,7 +88,12 @@ class ProductsPage extends React.Component {
       }
     })
 
-    this.setState({productsArray:productList,selectedProducts:selectedList,modalMsg:'Products have Approved Successfully',approved:true});
+    this.setState({
+      productsArray:productList,
+      selectedProducts:selectedList,
+      modalMsg:'Products have been Approved Successfully',
+      approved:true
+    });
   }
   approve(){
     var { productsArray } = this.state;
@@ -161,7 +103,7 @@ class ProductsPage extends React.Component {
     });
     var len2 = filteredProducts.length;
     if (len1>len2) {
-      this.setState({modalMsg:'Products have Approved Successfully'});
+      this.setState({modalMsg:'Products have been Approved Successfully'});
     } else {
       this.setState({modalMsg:'Please select a product'});
     }
@@ -200,7 +142,11 @@ class ProductsPage extends React.Component {
                          <p>Current Price</p>
                        </Grid.Column>
                        <Grid.Column width={5} style={{marginTop:'5px'}} >
-                         <Image src='../../images/caret-arrow-up.png'/>
+                         {
+                           (item.currentPrice < item.newPrice) ?
+                           <Image src='../../images/caret-arrow-up.png'/> :
+                             <Image src='../../images/caret-down.png'/>
+                         }
                        </Grid.Column>
                        <Grid.Column width={6}>
                          <p>New Price</p>
@@ -209,13 +155,13 @@ class ProductsPage extends React.Component {
                      </Grid.Row>
                      <Grid.Row style={{marginTop:'-17px',marginBottom:'7%'}}>
                        <Grid.Column width={5}>
-                         <p>€{item.currentPrice}</p>
+                         <p>DKK &nbsp; {item.currentPrice}</p>
                        </Grid.Column>
                        <Grid.Column width={5}>
                          <p>{item.margin}%</p>
                        </Grid.Column>
                        <Grid.Column width={6}>
-                         <p>€{item.newPrice}</p>
+                         <p>DKK &nbsp; {item.newPrice}</p>
                        </Grid.Column>
                        {/* <Grid.Column width={4} /> */}
                      </Grid.Row>
@@ -294,7 +240,7 @@ class ProductsPage extends React.Component {
                          <Grid.Row style={{fontSize:'18px',color:'#1A237E',marginTop:'-5%'}}>
                            <Grid.Column width={16} >
                              <center>
-                               €{this.state.modalco.newPrice}
+                               DKK &nbsp; {this.state.modalco.newPrice}
                            </center>
                          </Grid.Column>
                          </Grid.Row>
@@ -308,7 +254,7 @@ class ProductsPage extends React.Component {
                          <Grid.Row style={{fontSize:'18px',color:'#1A237E',marginTop:'-5%'}}>
                            <Grid.Column width={16}>
                              <center>
-                               €{this.state.modalco.currentPrice}
+                               DKK &nbsp; {this.state.modalco.currentPrice}
                            </center>
                          </Grid.Column>
                          </Grid.Row>
@@ -336,21 +282,7 @@ class ProductsPage extends React.Component {
                          <Grid.Row style={{fontSize:'18px',color:'#1A237E',marginTop:'-5%'}}>
                            <Grid.Column width={16} >
                              <center>
-                               €{this.state.modalco.outOftheDoor}
-                           </center>
-                         </Grid.Column>
-                         </Grid.Row>
-                         <Grid.Row>
-                           <Grid.Column width={16} >
-                             <center>
-                             <Segment style={{width:'50%',border:'1px solid #1A237E'}}>
-                             <center>
-                              Rema1000's
-                               <br />
-                               <br />
-                               <p style={{fontSize:'18px',color:'#1A237E',marginTop:'-3%'}}>€{this.state.modalco.productPrice}</p>
-                           </center>
-                           </Segment>
+                               DKK &nbsp; {this.state.modalco.outOftheDoor}
                            </center>
                          </Grid.Column>
                          </Grid.Row>
@@ -384,45 +316,50 @@ class ProductsPage extends React.Component {
                  <Modal.Description>
                    {this.state.selectedProducts.map((item,i)=>{
                      return(
-                       <Grid>
+                       <Grid key={i}>
                        <Grid.Row style={{marginBottom:'-4%'}} key={i}>
                         <Grid.Column width={1}/>
-                        <Grid.Column width={5} style={{background:'#1A237E'}}>
-                          <Image style={{marginTop:'5%'}} size='tiny' src={item.image}/>
+                        <Grid.Column width={5} style={{background:'#EEEEEE'}}>
+                          <Image style={{marginTop:'5%'}} size='tiny' src={item.url}/>
                         </Grid.Column>
-
-                        <Grid.Column width={7} style={{background:'#1A237E'}} >
+                        <Grid.Column width={7} style={{background:'#EEEEEE'}} >
                           <Grid>
-                            <Grid.Row style={{marginTop:'5%',marginBottom:'5%',color:'white',fontSize:'20px'}}>
+                            <Grid.Row style={{marginTop:'5%',marginBottom:'5%',fontSize:'20px'}}>
                               <Grid.Column >
                                 <span>{item.productName}</span>
                                </Grid.Column>
                             </Grid.Row>
-                            <Grid.Row style={{marginTop:'-13%',color:'white',fontSize:'15px'}}>
+                            <Grid.Row style={{marginTop:'-13%',fontSize:'15px'}}>
                               <Grid.Column width={5}>
-                                <center><p>CP</p></center>
+                                <center><p>Current Price</p></center>
                               </Grid.Column>
                               <Grid.Column width={6} style={{marginTop:'5px'}} >
-                                <center><Image src='../../images/caret-arrow-up.png'/></center>
+                                <center>
+                                  {
+                                    (item.currentPrice < item.newPrice) ?
+                                    <Image src='../../images/caret-arrow-up.png'/> :
+                                      <Image src='../../images/caret-down.png'/>
+                                  }
+                                </center>
                               </Grid.Column>
                               <Grid.Column width={5} >
-                                <center><p>NP</p></center>
+                                <center><p>New Price</p></center>
                               </Grid.Column>
                             </Grid.Row>
-                            <Grid.Row style={{marginTop:'-17px',marginBottom:'7%',color:'white',fontSize:'15px'}}>
+                            <Grid.Row style={{marginTop:'-17px',marginBottom:'7%',fontSize:'15px'}}>
                               <Grid.Column width={5} >
-                                <center><p>€{item.currentPrice}</p></center>
+                                <center><p>DKK &nbsp; {item.currentPrice}</p></center>
                               </Grid.Column>
                               <Grid.Column width={6}>
                                 <center><p>{item.margin}%</p></center>
                               </Grid.Column>
                               <Grid.Column width={5}>
-                                <center><p>€{item.newPrice}</p></center>
+                                <center><p>DKK &nbsp; {item.newPrice}</p></center>
                               </Grid.Column>
                             </Grid.Row>
                           </Grid>
                         </Grid.Column>
-                        <Grid.Column width={2} style={{background:'#1A237E'}}>
+                        <Grid.Column width={2} style={{background:'#EEEEEE'}}>
                           <Grid>
                             <Grid.Row style={{marginTop:'27%'}}>
                               <Grid.Column style={{paddingLeft:'9px'}}>
@@ -433,7 +370,7 @@ class ProductsPage extends React.Component {
                             <Grid.Row style={{marginTop:'-17px'}}>
                               <Grid.Column width={12}/>
                               <Grid.Column width={3}>
-                                  <Checkbox style={{textAlign:'center'}} onClick={this.handleChange.bind(this,i)} checked={item.checked} />
+                                <Checkbox style={{textAlign:'center'}} onClick={this.handleChange.bind(this,i)} checked={item.checked} />
                               </Grid.Column>
                             </Grid.Row>
                           </Grid>
@@ -470,6 +407,21 @@ class ProductsPage extends React.Component {
               <Modal open={this.state.approved} >
                 <Modal.Content style={{background:'#1A237E',color:'white'}}>
                   <center><h3>{this.state.modalMsg}</h3></center>
+                  <Divider />
+                  <br />
+                  <Grid>
+                    <Grid.Row>
+                  {
+                    this.state.selectedProducts.map((item, i) => {
+                      return(
+                            <Grid.Column key={i}>
+                              <Segment style={{background:'#EEEEEE'}}>item.productName</Segment>
+                            </Grid.Column>
+                      )
+                    })
+                  }
+                  </Grid.Row>
+                </Grid>
                 </Modal.Content>
                 <Modal.Actions style={{background:'#1A237E'}}>
                       <center><Button style={{background:'white',color:'#1A237E'}} onClick={this.closeModal.bind(this)}>Close</Button></center>
