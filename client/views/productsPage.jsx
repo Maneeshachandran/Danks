@@ -20,7 +20,7 @@ class ProductsPage extends React.Component {
     this.approve = this.approve.bind(this);
   }
   componentDidMount() {
-    request.get('http://localhost:3030/scrape')
+    request.get('/scrape')
            .end((err, res) => {
              if (err || !res.ok) {
                  alert('Oh no! error');
@@ -44,7 +44,7 @@ class ProductsPage extends React.Component {
     this.setState({modalco:this.state.selectedProducts[i],open:true});
   }
   closeModal(){
-    this.setState({open:false,open1:false,approved:false,selectedProducts:[]});
+      this.setState({open:false,open1:false,approved:false,selectedProducts:[]});
   }
   handleChange(index,e,value){
     var context= this;
@@ -75,22 +75,14 @@ class ProductsPage extends React.Component {
     var infoProduct = this.state.modalco;
     var productList = this.state.productsArray;
     var selectedList = this.state.selectedProducts;
-    productList.map((item)=>{
-      if(infoProduct.name == item.name){
-        const index = productList.indexOf(item);
-          productList.splice(index, 1);
-      }
-    })
-    selectedList.map((item)=>{
-      if(infoProduct.name == item.name){
-        const index = selectedList.indexOf(item);
-          selectedList.splice(index, 1);
-      }
-    })
+    console.log('prod  b4 -> ', productList);
+    productList = productList.filter((item) => {
+      return infoProduct.productName !== item.productName;
+    });
+    console.log('prod  aftr -> ', productList);
 
     this.setState({
       productsArray:productList,
-      selectedProducts:selectedList,
       modalMsg:'Produkter er succesfuldt godkendt',
       approved:true
     });
@@ -112,15 +104,27 @@ class ProductsPage extends React.Component {
   }
 
   listSelectedItems(){
-      var selectedItems = this.state.selectedProducts.map((item, i) => {
+      var selectedItems;
+
+      if (this.state.selectedProducts.length !== 0) {
+        selectedItems = this.state.selectedProducts.map((item, i) => {
+          return(
+            <List.Item key={i}>
+              <span>{item.productName}</span>
+              &nbsp;
+              <Icon color='green' name='checkmark' />
+            </List.Item>
+          );
+        });
+      } else {
         return(
-          <List.Item key={i}>
-            <span>{item.productName}</span>
+          <List.Item>
+            <span>{this.state.modalco.productName}</span>
             &nbsp;
             <Icon color='green' name='checkmark' />
           </List.Item>
         );
-      });
+      }
       return selectedItems;
   }
 
@@ -157,7 +161,7 @@ class ProductsPage extends React.Component {
                        </Grid.Column>
                        <Grid.Column width={5} style={{marginTop:'5px'}} >
                          {
-                           (item.currentPrice < item.newPrice) ?
+                           (item.margin >= 0) ?
                            <Image src='../../images/caret-arrow-up.png'/> :
                              <Image src='../../images/caret-down.png'/>
                          }
@@ -208,8 +212,8 @@ class ProductsPage extends React.Component {
 
               <Grid.Column width={16} >
                 <Segment style={{position:'fixed',bottom:'0px',width:'100%'}}>
-                  <Button style={{background:'#1A237E',color:'white',width:'47%'}} onClick={this.viewProducts}>Se produkter</Button>
-                  <Button style={{color:'#1A237E',width:'47%',marginLeft:'3.8%'}} onClick={this.approve}>Godkend</Button>
+                  <Button style={{color:'#1A237E',width:'47%',marginLeft:'3.8%'}} onClick={this.viewProducts}>Se produkter</Button>
+                  <Button style={{background:'#1A237E',color:'white',width:'47%'}} onClick={this.approve}>Godkend</Button>
                 </Segment>
               </Grid.Column>
             </Grid.Row>
@@ -308,8 +312,8 @@ class ProductsPage extends React.Component {
                  <Grid.Row>
                    <Grid.Column >
                      <Button.Group attached='bottom'>
-                       <Button color='black' style={{background:'#1A237E',color:'white'}} onClick={this.closeModal.bind(this)}>Afbryd</Button>
-                       <Button style={{border:'1px solid black',color:'#1A237E'}} onClick={this.approve1.bind(this)} >Godkend</Button>
+                       <Button style={{border:'1px solid black',color:'#1A237E'}} onClick={this.closeModal.bind(this)}>Afbryd</Button>
+                       <Button color='black' style={{background:'#1A237E',color:'white'}} onClick={this.approve1.bind(this)} >Godkend</Button>
                      </Button.Group>
                    </Grid.Column>
              </Grid.Row>
@@ -406,8 +410,8 @@ class ProductsPage extends React.Component {
                    <Grid.Row>
                      <Grid.Column width={16}>
                        <Button.Group attached='bottom'>
-                         <Button color='black' style={{background:'#1A237E',color:'white'}} onClick={this.closeModal.bind(this)}>Afbryd</Button>
-                         <Button style={{border:'1px solid black',color:'#1A237E'}} onClick={this.approve} >Godkend</Button>
+                         <Button style={{border:'1px solid black',color:'#1A237E'}} onClick={this.closeModal.bind(this)}>Afbryd</Button>
+                         <Button color='black' style={{background:'#1A237E',color:'white'}} onClick={this.approve} >Godkend</Button>
                        </Button.Group>
                      </Grid.Column>
                </Grid.Row>
