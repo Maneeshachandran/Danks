@@ -60,7 +60,7 @@ export default class IncomeStatement extends React.Component {
             {
               scaleLabel: {
                 display: true,
-                labelString: 'DKK'
+                labelString: 'MDKK'
               },
               fontSize: '18px',
               fontColor: '#1A237E'
@@ -97,7 +97,7 @@ export default class IncomeStatement extends React.Component {
             {
               scaleLabel: {
                 display: true,
-                labelString: 'DKK'
+                labelString: 'MDKK'
               },
               fontSize: '18px',
               fontColor: '#1A237E'

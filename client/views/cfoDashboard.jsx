@@ -75,7 +75,7 @@ class cfoDashboard extends React.Component {
           {
             scaleLabel: {
               display: true,
-              labelString: 'DKK'
+              labelString: 'MDKK'
             },
             fontSize: '18px',
             fontColor: '#1A237E'
@@ -189,7 +189,7 @@ class cfoDashboard extends React.Component {
                        <Card.Header>
                          <Link to='/incomeStatement/Accounts%20Payable%20Turnover'>
                          <center>
-                           <span style={{color:'#1A237E', fontSize:'16.8px', textAlign: 'center'}}> Accounts Payable </span>
+                           <span style={{color:'#1A237E', fontSize:'16.8px', textAlign: 'center'}}> A/C Payable </span>
                          </center>
                        </Link>
                        </Card.Header>
@@ -207,7 +207,7 @@ class cfoDashboard extends React.Component {
                        <Card.Header>
                          <Link to='/incomeStatement/Accounts%20Receivable%20Turnover'>
                          <center>
-                           <span style={{color:'#1A237E', fontSize:'16.8px', textAlign: 'center'}}> Accounts Receivable </span>
+                           <span style={{color:'#1A237E', fontSize:'16.8px', textAlign: 'center'}}> A/C Receivable </span>
                          </center>
                        </Link>
                        </Card.Header>
