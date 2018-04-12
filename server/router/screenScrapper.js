@@ -10,10 +10,10 @@ scrape.get('/scrape', function(req, res){
   // url = 'https://www.iposen.dk/shop/display/products?offers=1&category_id=41';
   var product_price = [3,8,12,27,24,17,25,18,18,14]
     , product_name = ['Banan', 'Kiwi', 'Mango', 'Vandmelon', 'Druer', 'Mush Melon', 'Æble', 'Jordbær', 'Ananas', 'Granatæble']
-    , margin = [50,65,45,80,56,80,35,68,35,45]
-    , currentPrice = [2,7,12,25,20,15,20,15,16,10]
-    , newPrice = [3,6,13,24,19,17,22,14,16,9]
     , outOftheDoor = [1,4,10,20,18,14,18,9,12,7]
+    , currentPrice = [2,7,12,25,20,15,20,15,16,10]
+    , newPrice = [2,5,9,22,20,13,20,13,14,9]
+    , margin =[50,20,-11,9,10,-7,10,30,14.2,22.2]
     , companyName = "rema1000"
     , image = [
                   "http://natureandnutrition.com/wp-content/uploads/2015/04/Health-Benefits-of-Bananas.jpg"

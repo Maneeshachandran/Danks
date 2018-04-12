@@ -14,7 +14,7 @@ class HeaderComponent extends React.Component {
                </Link>
              </Grid.Column>
              <Grid.Column width={11}>
-               <span style={{letterSpacing:'1px',color:'white',fontSize:'22.5px'}}>{this.props.content}</span>
+               <span style={{letterSpacing:'1px',color:'white',fontSize:'20px'}}>{this.props.content}</span>
              </Grid.Column>
              <Grid.Column width={3}>
                <img src='./../images/DDP-logo_edited.png' />

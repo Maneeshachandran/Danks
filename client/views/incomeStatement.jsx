@@ -5,11 +5,9 @@ import HeaderComponent from '../components/headerComponent.jsx';
 import {Bar} from 'react-chartjs-2';
 
 const countryOptions = [
-                          { key: '1', value: 'Götaland', text: 'Götaland' },
-                          { key: '2', value: 'Svealand', text: 'Svealand' },
-                          { key: '3', value: 'Österland', text: 'Österland' },
-                          { key: '4', value: 'Norrland', text: 'Norrland' }
-
+                          { key: '1', value: 'Birkerød', text: 'Birkerød' },
+                          { key: '2', value: 'Kokkedal', text: 'Kokkedal', disabled: true },
+                          { key: '3', value: 'Nørrebro', text: 'Nørrebro', disabled: true }
                        ];
 const categoryOptions = [
                           { key: '1', value:'Organic', text:'Organic' },
@@ -21,7 +19,7 @@ const categoryOptions = [
                         ];
 const productOptions = [
                          { key: 'Vegetables', value: 'Vegetables', text: 'Vegetables' },
-                         { key: 'Fruits', value: 'Fruits', text: 'Fruits' },
+                         { key: 'Fruits', value: 'Fruits', text: 'Fruits', disabled: true },
                          { key: 'Oil', value: 'Oil', text: 'Oil', disabled: true },
                          { key: 'Packed Items', value: 'Packed Items', text: 'Packed Items', disabled: true }
                        ];
@@ -126,7 +124,7 @@ export default class IncomeStatement extends React.Component {
     this.setState({open:false});
   }
   apply(){
-    if(this.state.selectedLocation == 'Götaland' && this.state.selectedProduct == 'Vegetables'){
+    if(this.state.selectedLocation == 'Birkerød' && this.state.selectedProduct == 'Vegetables'){
       let netProfitMarginData = {
         labels: ['Q1', 'Q2', 'Q3', 'Q4'],
         datasets: [

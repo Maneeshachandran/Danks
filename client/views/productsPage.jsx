@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Header, Image, Segment, Button, Checkbox, Modal, Dimmer, Loader, Divider } from 'semantic-ui-react';
+import { Grid, Header, Image, Segment, Button, Checkbox, Modal, Dimmer, Loader, Divider, List, Icon } from 'semantic-ui-react';
 import {HashRouter, Route, Link} from 'react-router-dom';
 import HeaderComponent from '../components/headerComponent.jsx';
 import request from 'superagent';
@@ -44,7 +44,7 @@ class ProductsPage extends React.Component {
     this.setState({modalco:this.state.selectedProducts[i],open:true});
   }
   closeModal(){
-    this.setState({open:false,open1:false,approved:false});
+    this.setState({open:false,open1:false,approved:false,selectedProducts:[]});
   }
   handleChange(index,e,value){
     var context= this;
@@ -91,7 +91,7 @@ class ProductsPage extends React.Component {
     this.setState({
       productsArray:productList,
       selectedProducts:selectedList,
-      modalMsg:'Products have been Approved Successfully',
+      modalMsg:'Produkter er succesfuldt godkendt',
       approved:true
     });
   }
@@ -103,13 +103,27 @@ class ProductsPage extends React.Component {
     });
     var len2 = filteredProducts.length;
     if (len1>len2) {
-      this.setState({modalMsg:'Products have been Approved Successfully'});
+      this.setState({modalMsg:'Produkter er succesfuldt godkendt'});
     } else {
-      this.setState({modalMsg:'Please select a product'});
+      this.setState({modalMsg:'Venligst vælg et produkt'});
     }
 
-    this.setState({productsArray:filteredProducts,approved:true,selectedProducts:[]});
+    this.setState({productsArray:filteredProducts,approved:true});
   }
+
+  listSelectedItems(){
+      var selectedItems = this.state.selectedProducts.map((item, i) => {
+        return(
+          <List.Item key={i}>
+            <span>{item.productName}</span>
+            &nbsp;
+            <Icon color='green' name='checkmark' />
+          </List.Item>
+        );
+      });
+      return selectedItems;
+  }
+
   render() {
     if (this.state.productsArray.length === 0) {
       return(
@@ -120,7 +134,7 @@ class ProductsPage extends React.Component {
     } else {
       return (
         <div style={{overflow:'hidden',marginTop:'12%'}}>
-          <HeaderComponent content='Products List' linkto='/mainPage'/>
+          <HeaderComponent content='Produkt Liste' linkto='/mainPage'/>
           <Grid>
           <Grid.Row/>
             {this.state.productsArray.map((item,i)=>{
@@ -139,7 +153,7 @@ class ProductsPage extends React.Component {
                      </Grid.Row>
                      <Grid.Row style={{marginTop:'-13%'}}>
                        <Grid.Column width={5}>
-                         <p>Current Price</p>
+                         <p>Nuv. Pris</p>
                        </Grid.Column>
                        <Grid.Column width={5} style={{marginTop:'5px'}} >
                          {
@@ -149,7 +163,7 @@ class ProductsPage extends React.Component {
                          }
                        </Grid.Column>
                        <Grid.Column width={6}>
-                         <p>New Price</p>
+                         <p>Ny Pris</p>
                        </Grid.Column>
                        {/* <Grid.Column width={4} /> */}
                      </Grid.Row>
@@ -194,8 +208,8 @@ class ProductsPage extends React.Component {
 
               <Grid.Column width={16} >
                 <Segment style={{position:'fixed',bottom:'0px',width:'100%'}}>
-                  <Button style={{background:'#1A237E',color:'white',width:'47%'}} onClick={this.viewProducts}>View Products</Button>
-                  <Button style={{color:'#1A237E',width:'47%',marginLeft:'3.8%'}} onClick={this.approve}>Approve</Button>
+                  <Button style={{background:'#1A237E',color:'white',width:'47%'}} onClick={this.viewProducts}>Se produkter</Button>
+                  <Button style={{color:'#1A237E',width:'47%',marginLeft:'3.8%'}} onClick={this.approve}>Godkend</Button>
                 </Segment>
               </Grid.Column>
             </Grid.Row>
@@ -204,7 +218,7 @@ class ProductsPage extends React.Component {
             <Grid.Row>
               <Grid.Column >
                 <Modal open={this.state.open}>
-                  <Modal.Header style={{color:'#1A237E'}}><center>Product Information</center></Modal.Header>
+                  <Modal.Header style={{color:'#1A237E'}}><center>Produkt Information</center></Modal.Header>
                    {this.state.modalco.size !=0 ?
                      <span>
                      <Modal.Content scrolling style={{overflowX:'hidden'}}>
@@ -219,7 +233,7 @@ class ProductsPage extends React.Component {
                          <Grid.Row style={{marginTop:'35%'}}>
                            <Grid.Column width={16}>
                              <center>
-                               Product Name
+                               Produkt Navn
                            </center>
                          </Grid.Column>
                          </Grid.Row>
@@ -233,7 +247,7 @@ class ProductsPage extends React.Component {
                          <Grid.Row>
                            <Grid.Column width={16}>
                              <center>
-                               New Price
+                               Ny Pris
                            </center>
                          </Grid.Column>
                          </Grid.Row>
@@ -247,7 +261,7 @@ class ProductsPage extends React.Component {
                          <Grid.Row>
                            <Grid.Column width={16}>
                              <center>
-                               Current Price
+                               Nuv. Pris
                            </center>
                          </Grid.Column>
                          </Grid.Row>
@@ -261,7 +275,7 @@ class ProductsPage extends React.Component {
                          <Grid.Row>
                            <Grid.Column width={16}>
                              <center>
-                               % Gain in Margin
+                               % Vækst i margin
                            </center>
                          </Grid.Column>
                          </Grid.Row>
@@ -294,8 +308,8 @@ class ProductsPage extends React.Component {
                  <Grid.Row>
                    <Grid.Column >
                      <Button.Group attached='bottom'>
-                       <Button color='black' style={{background:'#1A237E',color:'white'}} onClick={this.closeModal.bind(this)}>Cancel</Button>
-                       <Button style={{border:'1px solid black',color:'#1A237E'}} onClick={this.approve1.bind(this)} >Approve</Button>
+                       <Button color='black' style={{background:'#1A237E',color:'white'}} onClick={this.closeModal.bind(this)}>Afbryd</Button>
+                       <Button style={{border:'1px solid black',color:'#1A237E'}} onClick={this.approve1.bind(this)} >Godkend</Button>
                      </Button.Group>
                    </Grid.Column>
              </Grid.Row>
@@ -310,7 +324,7 @@ class ProductsPage extends React.Component {
           <Grid>
             <Grid.Row>
               <Modal open={this.state.open1}>
-               <Modal.Header style={{color:'#1A237E',fontSize:'22px'}}><center>Selected Products</center></Modal.Header>
+               <Modal.Header style={{color:'#1A237E',fontSize:'22px'}}><center>Valgte produkter</center></Modal.Header>
                <Modal.Content scrolling>
                  {this.state.selectedProducts.length != 0 ?
                  <Modal.Description>
@@ -331,19 +345,19 @@ class ProductsPage extends React.Component {
                             </Grid.Row>
                             <Grid.Row style={{marginTop:'-13%',fontSize:'15px'}}>
                               <Grid.Column width={5}>
-                                <center><p>Current Price</p></center>
+                                <center><p>Nuv. Pris</p></center>
                               </Grid.Column>
                               <Grid.Column width={6} style={{marginTop:'5px'}} >
                                 <center>
                                   {
-                                    (item.currentPrice < item.newPrice) ?
+                                    (item.margin >= 0) ?
                                     <Image src='../../images/caret-arrow-up.png'/> :
                                       <Image src='../../images/caret-down.png'/>
                                   }
                                 </center>
                               </Grid.Column>
                               <Grid.Column width={5} >
-                                <center><p>New Price</p></center>
+                                <center><p>Ny Pris</p></center>
                               </Grid.Column>
                             </Grid.Row>
                             <Grid.Row style={{marginTop:'-17px',marginBottom:'7%',fontSize:'15px'}}>
@@ -370,7 +384,7 @@ class ProductsPage extends React.Component {
                             <Grid.Row style={{marginTop:'-17px'}}>
                               <Grid.Column width={12}/>
                               <Grid.Column width={3}>
-                                <Checkbox style={{textAlign:'center'}} onClick={this.handleChange.bind(this,i)} checked={item.checked} />
+                                <Checkbox style={{textAlign:'center', borderColor:'#1A237E'}} onClick={this.handleChange.bind(this,i)} checked={item.checked} />
                               </Grid.Column>
                             </Grid.Row>
                           </Grid>
@@ -383,7 +397,7 @@ class ProductsPage extends React.Component {
                   }
                 </Modal.Description> :
                 <Modal.Description >
-                 <center> <h3>Please select a product </h3></center>
+                 <center> <h3>Venligst vælg et produkt </h3></center>
                  </Modal.Description>
               }
                </Modal.Content>
@@ -392,8 +406,8 @@ class ProductsPage extends React.Component {
                    <Grid.Row>
                      <Grid.Column width={16}>
                        <Button.Group attached='bottom'>
-                         <Button color='black' style={{background:'#1A237E',color:'white'}} onClick={this.closeModal.bind(this)}>Cancel</Button>
-                         <Button style={{border:'1px solid black',color:'#1A237E'}} onClick={this.approve} >Approve</Button>
+                         <Button color='black' style={{background:'#1A237E',color:'white'}} onClick={this.closeModal.bind(this)}>Afbryd</Button>
+                         <Button style={{border:'1px solid black',color:'#1A237E'}} onClick={this.approve} >Godkend</Button>
                        </Button.Group>
                      </Grid.Column>
                </Grid.Row>
@@ -405,26 +419,18 @@ class ProductsPage extends React.Component {
           <Grid >
             <Grid.Row>
               <Modal open={this.state.approved} >
-                <Modal.Content style={{background:'#1A237E',color:'white'}}>
-                  <center><h3>{this.state.modalMsg}</h3></center>
+                <Modal.Content>
+                  <center><h3 style={{color:'#1A237E'}}>{this.state.modalMsg}</h3></center>
                   <Divider />
-                  <br />
-                  <Grid>
-                    <Grid.Row>
-                  {
-                    this.state.selectedProducts.map((item, i) => {
-                      return(
-                            <Grid.Column key={i}>
-                              <Segment style={{background:'#EEEEEE'}}>item.productName</Segment>
-                            </Grid.Column>
-                      )
-                    })
-                  }
-                  </Grid.Row>
-                </Grid>
+                    <List>
+                      <center>
+                        {this.listSelectedItems()}
+                      </center>
+                    </List>
+                  <Divider />
                 </Modal.Content>
-                <Modal.Actions style={{background:'#1A237E'}}>
-                      <center><Button style={{background:'white',color:'#1A237E'}} onClick={this.closeModal.bind(this)}>Close</Button></center>
+                <Modal.Actions>
+                      <center><Button style={{background:'#1A237E',color:'white'}} onClick={this.closeModal.bind(this)}>Luk</Button></center>
                       <br/>
                 </Modal.Actions>
               </Modal>

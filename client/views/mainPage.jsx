@@ -3,10 +3,9 @@ import { Grid,Header,Card,Image,Segment,Icon,Dropdown,Button } from 'semantic-ui
 import HeaderComponent from '../components/headerComponent.jsx';
 import {HashRouter, Route, Link} from 'react-router-dom';
 const countryOptions = [
-                          { key: '1', value: 'Götaland', text: 'Götaland' },
-                          { key: '2', value: 'Svealand', text: 'Svealand' },
-                          { key: '3', value: 'Österland', text: 'Österland' },
-                          { key: '4', value: 'Norrland', text: 'Norrland' }
+                          { key: '1', value: 'Birkerød', text: 'Birkerød' },
+                          { key: '2', value: 'Kokkedal', text: 'Kokkedal' },
+                          { key: '3', value: 'Nørrebro', text: 'Nørrebro' }
 
                        ];
 const productOptions = [
@@ -20,7 +19,7 @@ export default class MainPage extends React.Component {
    render() {
       return (
         <div style={{height: '100%', overflow:'hidden', overflowX:'hidden'}}>
-          <HeaderComponent content='Dynamic Pricing' linkto='/'/>
+          <HeaderComponent content='Dynamisk Prissætning' linkto='/'/>
           <Grid style={{marginTop:'18%'}}>
           <Grid.Row style={{marginTop:'5%'}}>
             <Grid.Column>
@@ -32,7 +31,7 @@ export default class MainPage extends React.Component {
           <Grid.Row>
             <Grid.Column width={3}/>
             <Grid.Column width={10}>
-              <Dropdown placeholder="Select a Location" fluid selection options={countryOptions} style={{background:'lightgrey'}}/>
+              <Dropdown placeholder="Vælg Lokation" fluid selection options={countryOptions} style={{background:'lightgrey'}}/>
             </Grid.Column>
             <Grid.Column width={3}/>
           </Grid.Row>
@@ -46,7 +45,7 @@ export default class MainPage extends React.Component {
           <Grid.Row>
             <Grid.Column width={3}/>
             <Grid.Column width={10}>
-              <Dropdown placeholder="Select a Product" fluid selection options={productOptions} style={{background:'lightgrey',marginBottom:'5%'}}/>
+              <Dropdown placeholder="Vælg Produkt" fluid selection options={productOptions} style={{background:'lightgrey',marginBottom:'5%'}}/>
             </Grid.Column>
             <Grid.Column width={3}/>
           </Grid.Row>
@@ -54,7 +53,7 @@ export default class MainPage extends React.Component {
           <Grid.Row textAlign='center' style={{marginTop:'4%'}}>
             <Grid.Column width={4}/>
             <Grid.Column width={8}>
-              <Button fluid size='large' as={Link} to='/productsListPage' style={{backgroundColor:'#1A237E', color:'#EEEEEE'}}>Submit</Button>
+              <Button fluid size='large' as={Link} to='/productsListPage' style={{backgroundColor:'#1A237E', color:'#EEEEEE'}}>Send</Button>
             </Grid.Column>
             <Grid.Column width={4}/>
           </Grid.Row>

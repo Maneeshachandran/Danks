@@ -22,7 +22,7 @@ class App extends React.Component {
                   </Grid.Row>
                   <Grid.Row style={{marginTop:'-10px'}}>
                     <Grid.Column style={{textAlign:'center'}}>
-                       <span style={{color:'#1A237E',fontSize:'19px'}}>Dynamic Pricing</span>
+                       <span style={{color:'#1A237E',fontSize:'19px'}}>Dynamisk Prissætning</span>
                     </Grid.Column>
                   </Grid.Row>
                   </Grid>

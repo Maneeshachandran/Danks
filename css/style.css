@@ -16,3 +16,8 @@
 .ui.selection.active.dropdown:hover .menu{
   background-color: lightgrey !important;
 }
+/* .ui.checkbox input:checked~.box:before, .ui.checkbox input:checked~label:before {
+    background: #EEEEEE;
+    border-color: #1A237E;
+    border-width: 50px;
+} */
