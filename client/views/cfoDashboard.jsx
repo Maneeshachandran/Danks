@@ -75,7 +75,7 @@ class cfoDashboard extends React.Component {
           {
             scaleLabel: {
               display: true,
-              labelString: 'Kr'
+              labelString: 'DKK'
             },
             fontSize: '18px',
             fontColor: '#1A237E'
